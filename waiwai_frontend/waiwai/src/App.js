@@ -16,7 +16,7 @@ const hotelKeys = 'http://localhost:3000/hotelkeys'
 const restaurantKeys = 'http://localhost:3000/restaurantkeys'
 const activityKeys = 'http://localhost:3000/activitykeys'
 
-
+//this is a comment
 
 class App extends React.Component {
 constructor() {
