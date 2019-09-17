@@ -1,0 +1,2 @@
+class ReaturantKey < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class HotelKey < ApplicationRecord
+end

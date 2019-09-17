@@ -1,0 +1,2 @@
+class CarKey < ApplicationRecord
+end
