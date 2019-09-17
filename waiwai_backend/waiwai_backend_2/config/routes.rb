@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'hotels/filter', to: 'hotels#filter'
+  get 'restaurants/filter', to: 'restaurants#filter'
   resources :activites
   resources :hotels
   resources :restaurants
