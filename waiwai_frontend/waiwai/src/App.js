@@ -5,12 +5,10 @@ import './App.css';
 import Login from './component/Login'
 import Signup from './component/Signup'
 
-const hotelApi = 'http://localhost:3000/hotels'
-const carApi = 'http://localhost:3000/cars'
-const restaurantApi = 'http://localhost:3000/restaurants'
-const activityApi = 'http://localhost:3000/activities'
-const flightApi = 'http://localhost:3000/flights'
-const flightKeys = 'http://localhost:3000/flightkeys'
+const hotelApi = 'http://localhost:3000/hotels/filter'
+const carApi = 'http://localhost:3000/cars/filter'
+const restaurantApi = 'http://localhost:3000/restaurants/filter'
+const activityApi = 'http://localhost:3000/activities/filter'
 const carKeys = 'http://localhost:3000/carkeys'
 const hotelKeys = 'http://localhost:3000/hotelkeys'
 const restaurantKeys = 'http://localhost:3000/restaurantkeys'
@@ -26,15 +24,10 @@ constructor() {
     carIndex: 0,
     restaurantIndex: 0,
     activityIndex: 0,
-    prevHotel5: [],
-    thisHotel5: [],
-    nextHotel5: [],
-    prevRestaurant5: [],
-    thisRestaurant5: [],
-    nextRestaurant5: [],
-    prevActivity5: [],
-    thisActivity5: [],
-    nextActivity5: [],
+    hotels: [],
+    restaurants: [],
+    activites: [],
+    cars: [],
     allCarKeys: [],
     allHotelKeys: [],
     allRestaurantKeys: [],
@@ -56,49 +49,55 @@ componentDidMount() {
 handleIncrement = (category) => {
   switch (category) {
     case "hotel":
-      this.setState({ hotelIndex : this.state.hotelIndex + 5});
+      this.setState({ hotelIndex : this.state.hotelIndex + 5}, refetch());
       break;
     case "restaurant":
-      this.setState({ restaurantIndex : this.state.restaurantIndex + 5});
+      this.setState({ restaurantIndex : this.state.restaurantIndex + 5}, refetch());
       break;
     case "activity":
-      this.setState({ activityIndex : this.state.activityIndex + 5});
+      this.setState({ activityIndex : this.state.activityIndex + 5}, refetch());
       break;
     case "car":
-      this.setState({ carIndex : this.state.carIndex + 5})
+      this.setState({ carIndex : this.state.carIndex + 5}, refetch())
   }
 }
+
 
 handleDecrement = (category) => {
   switch (category) {
     case "hotel":
       if((this.state.hotelIndex - 5) > 0) {
-        this.setState({ hotelIndex : this.state.hotelIndex - 5})
+        this.setState({ hotelIndex : this.state.hotelIndex - 5}, refetch())
       } else {
         this.setState({ hotelIndex : 0})
       }
       break;
-    case "restaurant":
-      if((this.state.restaurantIndex - 5) > 0) {
-      this.setState({ restaurantIndex : this.state.restaurantIndex + 5})
-      } else {
-        this.setState({ restaurantIndex : 0})
-      }
-      break;
-    case "activity":
-      if((this.state.activityIndex - 5) > 0) {
-      this.setState({ activityIndex : this.state.activityIndex + 5})
-      } else {
-        this.setState({ activityIndex : 0})
-      }
-      break;
-    case "car":
-      if((this.state.carIndex - 5) > 0) {
-        this.setState({ carIndex : this.state.carIndex + 5})
-      } else {
-        this.setState({ carIndex : 0})
-      }
-  }
+      case "restaurant":
+        if((this.state.restaurantIndex - 5) > 0) {
+          this.setState({ restaurantIndex : this.state.restaurantIndex + 5}, refetch())
+        } else {
+          this.setState({ restaurantIndex : 0})
+        }
+        break;
+        case "activity":
+          if((this.state.activityIndex - 5) > 0) {
+            this.setState({ activityIndex : this.state.activityIndex + 5}, refetch())
+          } else {
+            this.setState({ activityIndex : 0})
+          }
+          break;
+          case "car":
+            if((this.state.carIndex - 5) > 0) {
+              this.setState({ carIndex : this.state.carIndex + 5}, refetch())
+            } else {
+              this.setState({ carIndex : 0})
+            }
+          }
+        }
+        
+refetch = () => {
+    this.fetchHotels()
+    this.fetchRestaurants()
 }
 
 fetchCars = () => {
@@ -108,21 +107,27 @@ fetchCars = () => {
 }
 
 fetchHotels = () => {
-  return fetch(hotelApi)
+  return fetch(hotelApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'index' : this.state.hotelIndex
+    }
+  })
   .then(res = res.json())
-  .then(data => this.setState({ allHotels : data}))
+  .then(data => this.setState({ hotels : data}))
 }
 
 fetchRestaurants = () => {
   return fetch(restaurantApi)
   .then(res => res.json())
-  .then(data => this.setState({ allRestaurants : data}))
+  .then(data => this.setState({ restaurants : data}))
 }
 
 fetchActivities = () => {
   return fetch(activityApi)
   .then(res => res.json())
-  .then(data => this.setState({ allActivities : data }))
+  .then(data => this.setState({ activities : data }))
 }
 
 fetchCarKeys = () => {
