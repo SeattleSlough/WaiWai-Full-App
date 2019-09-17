@@ -1,4 +1,4 @@
-class CarKeysController < ApplicationController
+class CarKeysController < ActionController::API
 
     def index
         @car_keys = CarKey.all 

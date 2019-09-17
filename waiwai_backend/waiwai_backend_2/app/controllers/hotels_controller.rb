@@ -1,4 +1,4 @@
-class HotelsController < ApplicationController
+class HotelsController < ActionController::API
 
     def index
         @hotels = Hotel.all 

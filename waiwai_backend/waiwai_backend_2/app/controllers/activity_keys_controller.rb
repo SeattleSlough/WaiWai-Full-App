@@ -1,4 +1,4 @@
-class ActivityKeysController < ApplicationController
+class ActivityKeysController < ActionController::API
 def index 
     @activities = ActivityKey.all 
     render json: @activities

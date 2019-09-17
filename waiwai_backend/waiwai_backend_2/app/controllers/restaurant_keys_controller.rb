@@ -1,4 +1,4 @@
-class RestaurantKeysController < ApplicationController
+class RestaurantKeysController < ActionController::API
 
     def index
         @restaurant_keys = RestaurantKey.all
