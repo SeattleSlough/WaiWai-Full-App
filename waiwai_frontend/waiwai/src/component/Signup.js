@@ -60,6 +60,7 @@ render() {
                     <label>
                         Password:
                         <input type="text" placeholder="password" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
+                        <br />
                     </label>
                     <br />
                         <input type="submit" value="Submit"/>

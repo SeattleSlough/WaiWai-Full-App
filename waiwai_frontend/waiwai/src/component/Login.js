@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Image from 'react-bootstrap/Image'
 
 const user_api = 'http://localhost:3000/api/v1/login'
 
@@ -23,7 +24,7 @@ class Login extends React.Component {
               username: this.state.username,
               password: this.state.password
           })
-      }).then(res = res.json())
+      }).then(res => res.json())
       .then(data => {
           console.log(data)
           this.handleLogin(data)
@@ -52,14 +53,16 @@ class Login extends React.Component {
 
 
     render() {
-        return(
-            <div className="title"> 
+        return (
+            <body className="title"> 
+            <div>
                 <h1>Maui Waiwai</h1>
             <div>
-                <form id="loginForm" onSubmit={this.handleSubmit(ev)}>
+                <form id="loginForm" onSubmit={(ev) => this.handleSubmit(ev)}>
                     <label>
                         Username:
-                        <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleChangeUsername}/> </label>
+                        <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleChangeUsername}/> 
+                    </label>
                     <br />
                     <label>
                         Password:
@@ -71,6 +74,7 @@ class Login extends React.Component {
             </div>
                 <Link to='/signup'>Create Account</Link>
             </div>
+            </body>
         )
     }
 }

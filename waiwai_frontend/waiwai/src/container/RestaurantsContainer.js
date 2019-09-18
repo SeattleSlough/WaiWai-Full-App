@@ -1,6 +1,6 @@
 import React from 'react'
 
-import HOCLoader from '../HOC/HOCLoader'
+import LoaderHOC from '../HOC/LoaderHOC'
 
 
 class RestaurantsContainer extends React.Component {
@@ -12,4 +12,4 @@ class RestaurantsContainer extends React.Component {
     }
 }
 
-export default HOCLoader('prop name')(RestaurantsContainer)
+export default LoaderHOC('prop name')(RestaurantsContainer)

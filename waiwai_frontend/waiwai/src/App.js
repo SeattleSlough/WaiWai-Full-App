@@ -1,9 +1,15 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './component/Login'
 import Signup from './component/Signup'
+import Portfolio from './container/Portfolio'
+import CarsContainer from './container/CarsContainer'
+import HotelsContainer from './container/HotelsContainer'
+import RestaurantsContainer from './container/RestaurantsContainer'
+import ActivitiesContainer from './container/ActivitiesContainer'
 
 const hotelApi = 'http://localhost:3000/hotels/filter'
 const carApi = 'http://localhost:3000/cars/filter'
@@ -49,16 +55,16 @@ componentDidMount() {
 handleIncrement = (category) => {
   switch (category) {
     case "hotel":
-      this.setState({ hotelIndex : this.state.hotelIndex + 5}, refetch());
+      this.setState({ hotelIndex : this.state.hotelIndex + 5}, this.refetch());
       break;
     case "restaurant":
-      this.setState({ restaurantIndex : this.state.restaurantIndex + 5}, refetch());
+      this.setState({ restaurantIndex : this.state.restaurantIndex + 5}, this.refetch());
       break;
     case "activity":
-      this.setState({ activityIndex : this.state.activityIndex + 5}, refetch());
+      this.setState({ activityIndex : this.state.activityIndex + 5}, this.refetch());
       break;
     case "car":
-      this.setState({ carIndex : this.state.carIndex + 5}, refetch())
+      this.setState({ carIndex : this.state.carIndex + 5}, this.refetch())
   }
 }
 
@@ -67,28 +73,28 @@ handleDecrement = (category) => {
   switch (category) {
     case "hotel":
       if((this.state.hotelIndex - 5) > 0) {
-        this.setState({ hotelIndex : this.state.hotelIndex - 5}, refetch())
+        this.setState({ hotelIndex : this.state.hotelIndex - 5}, this.refetch())
       } else {
         this.setState({ hotelIndex : 0})
       }
       break;
       case "restaurant":
         if((this.state.restaurantIndex - 5) > 0) {
-          this.setState({ restaurantIndex : this.state.restaurantIndex + 5}, refetch())
+          this.setState({ restaurantIndex : this.state.restaurantIndex + 5}, this.refetch())
         } else {
           this.setState({ restaurantIndex : 0})
         }
         break;
         case "activity":
           if((this.state.activityIndex - 5) > 0) {
-            this.setState({ activityIndex : this.state.activityIndex + 5}, refetch())
+            this.setState({ activityIndex : this.state.activityIndex + 5}, this.refetch())
           } else {
             this.setState({ activityIndex : 0})
           }
           break;
           case "car":
             if((this.state.carIndex - 5) > 0) {
-              this.setState({ carIndex : this.state.carIndex + 5}, refetch())
+              this.setState({ carIndex : this.state.carIndex + 5}, this.refetch())
             } else {
               this.setState({ carIndex : 0})
             }
@@ -114,7 +120,7 @@ fetchHotels = () => {
       'index' : this.state.hotelIndex
     }
   })
-  .then(res = res.json())
+  .then(res => res.json())
   .then(data => this.setState({ hotels : data}))
 }
 
@@ -124,21 +130,17 @@ fetchRestaurants = () => {
   .then(data => this.setState({ restaurants : data}))
 }
 
-fetchActivities = () => {
-  return fetch(activityApi)
-  .then(res => res.json())
-  .then(data => this.setState({ activities : data }))
-}
+// fetchActivities = () => {
+//   return fetch(activityApi)
+//   .then(res => res.json())
+//   .then(data => this.setState({ activities : data }))
+// }
 
-fetchCarKeys = () => {
+// fetchCarKeys = () => {
 
-}
+// }
 
 fetchHotelKeys = () => {
-
-}
-
-fetchFlightKeys = () => {
 
 }
 
@@ -158,7 +160,6 @@ fetchActivitiyKeys = () => {
      <Route path='/signup' render={(props) => <Signup {...props}/>}/>
      <Route path='/portfolio' render={() => <Portfolio 
           hotel={this.state.userHotel}
-          flight={this.state.userFlight}
           car={this.state.userCar}
           restaurants={this.state.userRestaurants}
           activities={this.state.userActivities}
@@ -172,10 +173,12 @@ fetchActivitiyKeys = () => {
      <Route path='/hotels' render={() => <HotelsContainer 
           increment={this.state.handleIncrement} 
           decrement={this.state.handleDecrement}
+          hotels={this.state.hotels}
         />}/>
      <Route path='/restaurants' render={() => <RestaurantsContainer 
           increment={this.state.handleIncrement} 
           decrement={this.state.handleDecrement}
+          restaurants={this.state.restaurants}
         />}/>
      <Route path='/activities' render={() => <ActivitiesContainer 
           increment={this.state.handleIncrement} 

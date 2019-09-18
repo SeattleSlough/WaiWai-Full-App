@@ -23,6 +23,10 @@
   color: #61dafb;
 }
 
+.title {
+  background-image: url("https://www.fourseasons.com/content/dam/fourseasons/images/web/MAU/MAU_662_aspect16x9.jpg/jcr:content/renditions/cq5dam.web.1280.720.jpeg")
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

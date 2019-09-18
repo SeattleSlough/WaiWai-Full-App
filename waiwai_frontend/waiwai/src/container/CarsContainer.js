@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-import HOCLoader from '../HOC/HOCLoader'
+import LoaderHOC from '../HOC/LoaderHOC'
 
 class CarsContainer extends React.Component {
     render() {
@@ -12,4 +12,4 @@ class CarsContainer extends React.Component {
     }
 }
 
-export default HOCLoader('prop name')(CarsContainer)
+export default LoaderHOC('prop name')(CarsContainer)

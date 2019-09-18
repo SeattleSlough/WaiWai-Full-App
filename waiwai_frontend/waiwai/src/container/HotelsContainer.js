@@ -1,6 +1,6 @@
 import React from 'react'
 
-import HOCLoader from '../HOC/HOCLoader'
+import LoaderHOC from '../HOC/LoaderHOC'
 
 class HotelsContainer extends React.Component {
     render() {
@@ -11,4 +11,4 @@ class HotelsContainer extends React.Component {
     }
 }
 
-export default HOCLoader('prop name')(HotelsContainer)
+export default LoaderHOC('prop name')(HotelsContainer)

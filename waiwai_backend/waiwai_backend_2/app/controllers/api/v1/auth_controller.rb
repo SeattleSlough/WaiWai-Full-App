@@ -2,7 +2,6 @@ class Api::V1::AuthController < ApplicationController
     skip_before_action :authorized, only: [:create]
 
     def create
-        puts params[:password]
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             token = encode_token({user_id: @user.id})
@@ -12,4 +11,4 @@ class Api::V1::AuthController < ApplicationController
         end
     end
 
-    private 
+end
