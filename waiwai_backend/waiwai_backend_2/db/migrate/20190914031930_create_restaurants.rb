@@ -4,8 +4,8 @@ class CreateRestaurants < ActiveRecord::Migration[5.2]
       t.text :name
       t.text :description
       t.text :image
-      t.integer :cost_per_person
-      t.integer :stars
+      t.float :cost_per_person
+      t.float :stars
     end
   end
 end
