@@ -20,8 +20,6 @@ const hotelKeys = 'http://localhost:3000/hotelkeys'
 const restaurantKeys = 'http://localhost:3000/restaurantkeys'
 const activityKeys = 'http://localhost:3000/activitykeys'
 
-//this is a comment
-
 class App extends React.Component {
 constructor() {
   super()
@@ -47,9 +45,9 @@ constructor() {
 
 componentDidMount() {
   this.fetchHotels()
-  this.fetchRestaurants()
+  // this.fetchRestaurants()
   this.fetchHotelKeys()
-  this.fetchRestaurantKeys()
+  // this.fetchRestaurantKeys()
 }
 
 handleIncrement = (category) => {
@@ -106,11 +104,6 @@ refetch = () => {
     this.fetchRestaurants()
 }
 
-fetchCars = () => {
-  return fetch(carApi)
-  .then(res => res.json())
-  .then(data => this.setState({ allCars : data}))
-}
 
 fetchHotels = () => {
   return fetch(hotelApi, {
@@ -121,36 +114,46 @@ fetchHotels = () => {
     }
   })
   .then(res => res.json())
-  .then(data => this.setState({ hotels : data}))
+  .then(data => console.log(data))
+}
+// this.setState({ hotels : data}))
+
+fetchHotelKeys = () => {
+  
 }
 
-fetchRestaurants = () => {
-  return fetch(restaurantApi)
-  .then(res => res.json())
-  .then(data => this.setState({ restaurants : data}))
-}
-
-// fetchActivities = () => {
-//   return fetch(activityApi)
+// fetchRestaurants = () => {
+  //   return fetch(restaurantApi)
+  //   .then(res => res.json())
+  //   .then(data => this.setState({ restaurants : data}))
+  // }
+  // 
+  // fetchRestaurantKeys = () => {
+    
+    // }
+    
+    // fetchActivities = () => {
+      //   return fetch(activityApi)
+      //   .then(res => res.json())
+      //   .then(data => this.setState({ activities : data }))
+      // }
+      
+      // fetchActivitiyKeys = () => {
+        
+        // }
+        
+  // fetchCars = () => {
+ //   return fetch(carApi)
 //   .then(res => res.json())
-//   .then(data => this.setState({ activities : data }))
+//   .then(data => this.setState({ cars : data}))
 // }
 
 // fetchCarKeys = () => {
 
 // }
 
-fetchHotelKeys = () => {
 
-}
 
-fetchRestaurantKeys = () => {
-
-}
-
-fetchActivitiyKeys = () => {
-
-}
 
   render() {
     return (
