@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,13 +12,13 @@ import RestaurantsContainer from './container/RestaurantsContainer'
 import ActivitiesContainer from './container/ActivitiesContainer'
 
 const hotelApi = 'http://localhost:3000/hotels/filter'
-const carApi = 'http://localhost:3000/cars/filter'
-const restaurantApi = 'http://localhost:3000/restaurants/filter'
-const activityApi = 'http://localhost:3000/activities/filter'
-const carKeys = 'http://localhost:3000/carkeys'
-const hotelKeys = 'http://localhost:3000/hotelkeys'
-const restaurantKeys = 'http://localhost:3000/restaurantkeys'
-const activityKeys = 'http://localhost:3000/activitykeys'
+// const carApi = 'http://localhost:3000/cars/filter'
+// const restaurantApi = 'http://localhost:3000/restaurants/filter'
+// const activityApi = 'http://localhost:3000/activities/filter'
+// const carKeys = 'http://localhost:3000/carkeys'
+// const hotelKeys = 'http://localhost:3000/hotelkeys'
+// const restaurantKeys = 'http://localhost:3000/restaurantkeys'
+// const activityKeys = 'http://localhost:3000/activitykeys'
 
 class App extends React.Component {
 constructor() {
@@ -114,9 +114,8 @@ fetchHotels = () => {
     }
   })
   .then(res => res.json())
-  .then(data => console.log(data))
+  .then(data => this.setState({ hotels : data}))
 }
-// this.setState({ hotels : data}))
 
 fetchHotelKeys = () => {
   
@@ -151,9 +150,6 @@ fetchHotelKeys = () => {
 // fetchCarKeys = () => {
 
 // }
-
-
-
 
   render() {
     return (

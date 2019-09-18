@@ -15,7 +15,7 @@ Hotel.create(name:"Fairmont Kea Lani Maui", rate:2244, stars:4.5, room:"Three Be
 
 Hotel.create(name:"Grand Wailea", rate:3599, stars:4.9, room: "Napua Club Royal Suite",description: "The Grand Wailea Resort & Spa is a 40-acre Waldorf-Astoria luxury resort located on the beach in Wailea, Maui, Hawaii, and also home to 2 of the twelve Fishpipes in the world.", image:"https://www.grandwailea.com/wp-content/uploads/2016/06/grand-wailea-all-pools-aerial-257x210.jpg")
 
-Hotels.create(name:"Four Seasons Resort Maui at Wailea", rate:5800, stars: 4.8, room: "Club Floor Ocean-View Prime Executive Suite", description:"Disappear and rediscover yourself at the new Four Seasons Resort Maui at Wailea. This iconic Hawaiian hideaway takes perfection to new heights. Experience Hawaii like never before, discover a better place to see, to be seen and to be unseen.", image:"https://www.fourseasons.com/content/dam/fourseasons/images/web/MAU/MAU_1149_aspect16x9.jpg/jcr:content/renditions/cq5dam.web.637.358.jpeg")
+Hotel.create(name:"Four Seasons Resort Maui at Wailea", rate:5800, stars: 4.8, room: "Club Floor Ocean-View Prime Executive Suite", description:"Disappear and rediscover yourself at the new Four Seasons Resort Maui at Wailea. This iconic Hawaiian hideaway takes perfection to new heights. Experience Hawaii like never before, discover a better place to see, to be seen and to be unseen.", image:"https://www.fourseasons.com/content/dam/fourseasons/images/web/MAU/MAU_1149_aspect16x9.jpg/jcr:content/renditions/cq5dam.web.637.358.jpeg")
 
 Restaurant.create(name: "Mama's Fish House",
 description: "While sailing across the South Pacific in the late 1950s, the young Christenson family embraced the lifestyle of old Polynesia, discovering the ways of preparing fish and living the aloha spirit. They settled on Maui in 1963 and in 1973 Mama’s Fish House was born – Maui’s first fresh fish restaurant.",
@@ -23,7 +23,7 @@ image: "https://media-prideofmaui.netdna-ssl.com/blog/wp-content/uploads/2017/01
 cost_per_person: 250,
 stars: 5)
 
-Restaurant.create(description: "Located in Kihei, Koiso Sushi Bar is Maui’s go-to sushi restaurant for an always pleasureful and intimate dinner in Kihei, South Maui. Here is where you’ll find fantastic service, an authentic Japanese menu (with a slight Maui twist), fresh fish and seafood, and menu ingredients that are always infused with only best of Hawaii’s local and sustainable farm culture.",
+Restaurant.create(name:"Koiso Sushi Bar", description: "Located in Kihei, Koiso Sushi Bar is Maui’s go-to sushi restaurant for an always pleasureful and intimate dinner in Kihei, South Maui. Here is where you’ll find fantastic service, an authentic Japanese menu (with a slight Maui twist), fresh fish and seafood, and menu ingredients that are always infused with only best of Hawaii’s local and sustainable farm culture.",
 image: "https://media-prideofmaui.netdna-ssl.com/blog/wp-content/uploads/2017/01/Top-33-Maui-Restaurants-Koiso-Sushi-Bar-05.jpg",
 cost_per_person: 150,
 stars: 5)
@@ -31,18 +31,16 @@ stars: 5)
 Restaurant.create(name: "Nuka",
 description: "NUKA is possibly the most authentic modern-Japanese restaurant in Hawaii, not just the Island of Maui. Owned by the Paia Fish Market family, this is without a doubt, totally their tour de force Maui restaurant. Tucked away in the beautifully elusive Haiku community, NUKA is located off Haiku Road; adjacent the Haiku Post Office and the Aloha Aina Center. There aren’t many seats, so make reservations, or plan ahead accordingly. If you love authentic Japanese cuisine, you do not want to miss out on this Maui dining experience.",
 image: "https://media-prideofmaui.netdna-ssl.com/blog/wp-content/uploads/2017/01/nuka-04.jpg",
-cost_per_person: null,
+cost_per_person: 125,
 stars: 4.75)
 
-Restaurant.create(id: 4,
-name: "The Pint & Cork",
+Restaurant.create(name: "The Pint & Cork",
 description: "The Island of Maui has needed a restaurant like The Pink & Cork for so long! Located in the Shops at Wailea, The Pint & Cork is where you’ll find an island-style version of gastronomy gone brewpub. Great for weekend breakfasts (they have a Bloody Mary bar), and daily lunch, happy hour, dinner and late-night dining, here’s a spot to put on your Maui rotation.",
 image: "https://media-prideofmaui.netdna-ssl.com/blog/wp-content/uploads/2017/01/pint-cork-01.jpg",
 cost_per_person: 45,
 stars: 4.75)
 
-Restaurant.create(id: 5,
-name: "Lineage",
+Restaurant.create(name: "Lineage",
 description: "Located in Wailea, Lineage Maui is Chef Sheldon Simeon’s newest culinary adventure. Famously known for his participation (and wins) in Bravo channel’s American Top Chef’s series, here’s a Maui restaurant that you definitely don’t want to miss when you’re on the Valley Isle.",
 image: "https://media-prideofmaui.netdna-ssl.com/blog/wp-content/uploads/2017/01/Top-33-Maui-Restaurants-lineage-11.jpg",
 cost_per_person: 160,
@@ -72,8 +70,7 @@ image: "https://media-prideofmaui.netdna-ssl.com/blog/wp-content/uploads/2017/01
 cost_per_person: 175,
 stars: 4.5)
 
-Restaurant.create(id: 10,
-name: "Morimoto Maui",
+Restaurant.create(name: "Morimoto Maui",
 description: "Located at the Andaz Maui Resort in Wailea, Morimoto is named after the highly-acclaimed celebrity Chef Masaharu Morimoto of Iron Chef and Iron Chef America. Besides being one of the best restaurants in Maui, guests will also surely enjoy breathtaking views of Mokapu Beach while savoring a tasty meal. Morimoto’s menu is full of local, farm and ocean fresh ingredients. Popular items are hand-rolled sushi, fresh fish, steak and seasonal cocktails with a Japanese and Western flair.",
 image: "https://media-prideofmaui.netdna-ssl.com/blog/wp-content/uploads/2017/01/morimoto-06.jpg",
 cost_per_person: 200,
@@ -103,8 +100,7 @@ image: "https://media-prideofmaui.netdna-ssl.com/blog/wp-content/uploads/2017/01
 cost_per_person: 200,
 stars: 4.5)
 
-Restaurant.create(id: 15,
-name: "Hali'imaile General Store",
+Restaurant.create(name: "Hali'imaile General Store",
 description: "There are many spectacular things in prospect for you if you’ve never been to the Hali’imaile General Store in Upcountry-Maui. For those that have been here, perhaps even numerous times, you know what we’re talking about. Located just a 10-minute drive up Baldwin Avenue from the Historic Paia Town, guests will surely find one of Maui’s best restaurants tucked amongst sugar cane fields and a lot of local history.",
 image: "https://media-prideofmaui.netdna-ssl.com/blog/wp-content/uploads/2017/01/Haliimaile-General-Store.jpg",
 cost_per_person: 160,

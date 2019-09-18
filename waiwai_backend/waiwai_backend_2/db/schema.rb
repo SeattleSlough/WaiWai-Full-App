@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_09_14_041624) do
     t.text "provider"
     t.text "description"
     t.text "image"
-    t.integer "cost"
+    t.float "cost"
   end
 
   create_table "activity_keys", force: :cascade do |t|
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_09_14_041624) do
   create_table "cars", force: :cascade do |t|
     t.string "name"
     t.text "image"
-    t.integer "rate"
+    t.float "rate"
   end
 
   create_table "hotel_keys", force: :cascade do |t|
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2019_09_14_041624) do
 
   create_table "hotels", force: :cascade do |t|
     t.text "name"
-    t.integer "rate"
-    t.integer "stars"
+    t.float "rate"
+    t.float "stars"
     t.text "room"
     t.text "description"
     t.text "image"
@@ -68,8 +68,8 @@ ActiveRecord::Schema.define(version: 2019_09_14_041624) do
     t.text "name"
     t.text "description"
     t.text "image"
-    t.integer "cost_per_person"
-    t.integer "stars"
+    t.float "cost_per_person"
+    t.float "stars"
   end
 
   create_table "users", force: :cascade do |t|
