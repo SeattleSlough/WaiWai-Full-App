@@ -18,6 +18,7 @@ const hotelApi = 'http://localhost:3000/hotels/filter'
 // const carKeys = 'http://localhost:3000/carkeys'
 const makeHotelReservationApi = 'http://localhost:3000/hotels/reservation'
 const getHotelReservationsApi = 'http://localhost:3000/hotels/reservations'
+const deleteHotelReservationsApi = 'http://localhost:3000/hotels/delete'
 // const restaurantKeys = 'http://localhost:3000/restaurantkeys'
 // const activityKeys = 'http://localhost:3000/activitykeys'
 
@@ -137,7 +138,13 @@ fetchHotelReservations = () => {
 }
 
 deleteHotelReservations = (hotelId) => {
-  
+  fetch(deleteHotelReservationsApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'user' : hotelId
+    }
+  })
 }
 
 // fetchRestaurants = () => {
