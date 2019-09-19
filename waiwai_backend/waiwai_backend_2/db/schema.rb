@@ -28,31 +28,10 @@ ActiveRecord::Schema.define(version: 2019_09_19_182452) do
     t.bigint "user_id", null: false
   end
 
-  create_table "activity_keys", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "activity_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "car_keys", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "car_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "cars", force: :cascade do |t|
     t.string "name"
     t.text "image"
     t.float "rate"
-  end
-
-  create_table "hotel_keys", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "hotel_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "hotels", force: :cascade do |t|
@@ -62,11 +41,6 @@ ActiveRecord::Schema.define(version: 2019_09_19_182452) do
     t.text "room"
     t.text "description"
     t.text "image"
-  end
-
-  create_table "restaurant_keys", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "restaurant_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
