@@ -1,2 +1,0 @@
-class CarKey < ApplicationRecord
-end

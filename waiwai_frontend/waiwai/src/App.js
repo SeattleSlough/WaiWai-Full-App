@@ -13,12 +13,12 @@ import ActivitiesContainer from './container/ActivitiesContainer'
 
 const hotelApi = 'http://localhost:3000/hotels/filter'
 // const carApi = 'http://localhost:3000/cars/filter'
-// const restaurantApi = 'http://localhost:3000/restaurants/filter'
+const restaurantApi = 'http://localhost:3000/restaurants/filter'
 // const activityApi = 'http://localhost:3000/activities/filter'
 // const carKeys = 'http://localhost:3000/carkeys'
-// const hotelKeys = 'http://localhost:3000/hotelkeys'
 // const restaurantKeys = 'http://localhost:3000/restaurantkeys'
 // const activityKeys = 'http://localhost:3000/activitykeys'
+const hotelKeysApi = 'http://localhost:3000/hotels/reserve'
 
 class App extends React.Component {
 constructor() {
@@ -45,7 +45,7 @@ constructor() {
 
 componentDidMount() {
   this.fetchHotels()
-  // this.fetchRestaurants()
+  this.fetchRestaurants()
   this.fetchHotelKeys()
   // this.fetchRestaurantKeys()
 }
@@ -121,12 +121,24 @@ fetchHotelKeys = () => {
   
 }
 
-// fetchRestaurants = () => {
-  //   return fetch(restaurantApi)
-  //   .then(res => res.json())
-  //   .then(data => this.setState({ restaurants : data}))
-  // }
-  // 
+fetchRestaurants = () => {
+    return fetch(restaurantApi)
+    .then(res => res.json())
+    .then(data => this.setState({ restaurants : data}))
+  }
+
+  createHotelReservation = (hotelId) => {
+    fetch(hotelKeysApi, {
+       method: 'GET',
+       headers : {
+           'Content-Type' : 'application/json',
+           'Accept' : 'application/json',
+           "hotel": hotelId,
+           "user" : `${localStorage.getItem('user_id')}`
+       }
+    })
+}
+  
   // fetchRestaurantKeys = () => {
     
     // }
@@ -173,6 +185,7 @@ fetchHotelKeys = () => {
           increment={this.state.handleIncrement} 
           decrement={this.state.handleDecrement}
           hotels={this.state.hotels}
+          reservation={this.createHotelReservation}
         />}/>
      <Route path='/restaurants' render={() => <RestaurantsContainer 
           increment={this.state.handleIncrement} 

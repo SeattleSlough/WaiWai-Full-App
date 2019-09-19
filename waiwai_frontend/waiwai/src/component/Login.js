@@ -18,7 +18,6 @@ class Login extends React.Component {
           method: 'POST',
           headers: {
               'Content-Type' : 'application/json',
-              'Accept' : 'application/json'
           },
           body: JSON.stringify ({
               username: this.state.username,
@@ -26,16 +25,14 @@ class Login extends React.Component {
           })
       }).then(res => res.json())
       .then(data => {
-          console.log(data)
           this.handleLogin(data)
       })
   }
 
   handleLogin = (data) => {
       localStorage.setItem("token", data.jwt)
-      localStorage.setItem("userId", data.user_id)
+      localStorage.setItem("user_id", data.user_id)
       this.props.history.push('/portfolio')
-
   }
 
   handleSubmit = (ev) => {

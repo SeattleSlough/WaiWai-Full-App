@@ -14,4 +14,11 @@ class HotelsController < ActionController::API
         @filter = @hotels.slice(request.headers['HTTP_INDEX'].to_i,5)
         render json: @filter
     end
+
+    def reserve
+        hotel = Hotel.find_by(request.headers['HTTP_HOTEL'])
+        user = User.find_by(request.headers['HTTP_USER'])
+        @reservation = user.hotel
+        byebug
+    end
 end

@@ -21,7 +21,6 @@ create = () => {
         method: 'POST',
         headers: {
             'Content-Type' : 'application/json',
-            'Accept' : 'application/json'
         },
         body: JSON.stringify ({
             username: this.state.username,
@@ -32,9 +31,8 @@ create = () => {
 }
 
 handleCreate = (data) => {
-    console.log(data)
    localStorage.setItem("token", data.jwt)
-   localStorage.setItem("userId", data.user_id)
+   localStorage.setItem("user_id", data.user_id)
    this.props.history.push('/portfolio')
 }
 
