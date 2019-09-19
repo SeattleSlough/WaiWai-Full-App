@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_14_041624) do
+ActiveRecord::Schema.define(version: 2019_09_19_182452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 2019_09_14_041624) do
     t.text "description"
     t.text "image"
     t.float "cost"
+  end
+
+  create_table "activities_users", id: false, force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "activity_keys", force: :cascade do |t|
@@ -70,6 +75,11 @@ ActiveRecord::Schema.define(version: 2019_09_14_041624) do
     t.text "image"
     t.float "cost_per_person"
     t.float "stars"
+  end
+
+  create_table "restaurants_users", id: false, force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
