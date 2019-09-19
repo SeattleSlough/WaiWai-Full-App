@@ -16,7 +16,8 @@ const hotelApi = 'http://localhost:3000/hotels/filter'
 // const restaurantApi = 'http://localhost:3000/restaurants/filter'
 // const activityApi = 'http://localhost:3000/activities/filter'
 // const carKeys = 'http://localhost:3000/carkeys'
-const hotelReservationApi = 'http://localhost:3000/hotels/reservation'
+const makeHotelReservationApi = 'http://localhost:3000/hotels/reservation'
+const getHotelReservationsApi = 'http://localhost:3000/hotels/reservations'
 // const restaurantKeys = 'http://localhost:3000/restaurantkeys'
 // const activityKeys = 'http://localhost:3000/activitykeys'
 
@@ -32,12 +33,8 @@ constructor() {
     restaurants: [],
     activites: [],
     cars: [],
-    allCarKeys: [],
-    allHotelKeys: [],
-    allRestaurantKeys: [],
-    allActivityKeys: [],
-    userHotel: {},
-    userCar: {},
+    userHotel: [],
+    userCar: [],
     userRestaurants: [],
     userActivities: []
   }
@@ -45,6 +42,7 @@ constructor() {
 
 componentDidMount() {
   this.fetchHotels()
+  this.fetchHotelReservations()
   // this.fetchRestaurants()
 }
 
@@ -102,7 +100,6 @@ refetch = () => {
     this.fetchRestaurants()
 }
 
-
 fetchHotels = () => {
   return fetch(hotelApi, {
     method: 'GET',
@@ -112,11 +109,12 @@ fetchHotels = () => {
     }
   })
   .then(res => res.json())
-  .then(data => this.setState({ hotels : data}))
+  .then(data => {
+    this.setState({ hotels : data})})
 }
 
 reserveHotel = (hotelId) => {
-  fetch(hotelReservationApi, {
+  fetch(makeHotelReservationApi, {
     method: 'GET',
     headers: {
       'Content-Type' : 'application/json',
@@ -124,6 +122,21 @@ reserveHotel = (hotelId) => {
       'user' : `${localStorage.getItem("user_id")}`
     }
   })
+}
+
+fetchHotelReservations = () => {
+  fetch(getHotelReservationsApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => this.setState({userHotel : data}))
+}
+
+deleteHotelReservations = (hotelId) => {
   
 }
 

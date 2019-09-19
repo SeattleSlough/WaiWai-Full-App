@@ -15,7 +15,7 @@ class HotelsController < ActionController::API
         render json: @filter
     end
 
-    def reservation
+    def create_reservation
         @user = User.find(request.headers['HTTP_USER'])
         if @user.hotels.length === 0
             @user.hotels.push(Hotel.find(request.headers['HTTP_HOTEL']))
@@ -27,4 +27,10 @@ class HotelsController < ActionController::API
         @user = User.find(request.headers['HTTP_USER'])
         @user.hotels.delete(Hotel.find(request.headers['HTTP_HOTEL']))
     end
+
+    def view_reservations
+        @user = User.find(request.headers['HTTP_USER'])
+        render json: @user.hotels
+    end
+
 end

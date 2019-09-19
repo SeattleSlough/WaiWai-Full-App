@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   get 'hotels/filter', to: 'hotels#filter'
   get 'restaurants/filter', to: 'restaurants#filter'
-  get 'hotels/reservation', to: 'hotels#reservation'
+  get 'hotels/reservation', to: 'hotels#create_reservation'
+  get 'hotels/reservations', to: 'hotels#view_reservations'
+  get 'restaurants/reservation', to: 'restaurants#create_reservation'
+  get 'restaurants/reservations', to: 'restaurants#view_reservations'
   resources :activites
   resources :hotels
   resources :restaurants

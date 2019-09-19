@@ -18,14 +18,14 @@ end
 def reservation
     @user = User.find(request.headers['HTTP_USER'])
     if @user.hotels.length === 0
-        @user.hotels.push(Hotel.find(request.headers['HTTP_HOTEL']))
+        @user.activities.push(Activity.find(request.headers['HTTP_ACTIVITY']))
     end
-    render json: @user.hotels
+    render json: @user.activities
 end
 
 def deleteReservation
     @user = User.find(request.headers['HTTP_USER'])
-    @user.hotels.delete(Hotel.find(request.headers['HTTP_HOTEL']))
+    @user.activities.delete(Activity.find(request.headers['HTTP_ACTIVITY']))
 end
     
     
