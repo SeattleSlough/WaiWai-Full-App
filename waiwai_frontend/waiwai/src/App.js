@@ -16,7 +16,7 @@ const hotelApi = 'http://localhost:3000/hotels/filter'
 // const restaurantApi = 'http://localhost:3000/restaurants/filter'
 // const activityApi = 'http://localhost:3000/activities/filter'
 // const carKeys = 'http://localhost:3000/carkeys'
-// const hotelKeys = 'http://localhost:3000/hotelkeys'
+const hotelReservationApi = 'http://localhost:3000/hotels/reservation'
 // const restaurantKeys = 'http://localhost:3000/restaurantkeys'
 // const activityKeys = 'http://localhost:3000/activitykeys'
 
@@ -46,8 +46,6 @@ constructor() {
 componentDidMount() {
   this.fetchHotels()
   // this.fetchRestaurants()
-  this.fetchHotelKeys()
-  // this.fetchRestaurantKeys()
 }
 
 handleIncrement = (category) => {
@@ -117,7 +115,15 @@ fetchHotels = () => {
   .then(data => this.setState({ hotels : data}))
 }
 
-fetchHotelKeys = () => {
+reserveHotel = (hotelId) => {
+  fetch(hotelReservationApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'hotel' : hotelId,
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
   
 }
 
@@ -173,6 +179,7 @@ fetchHotelKeys = () => {
           increment={this.state.handleIncrement} 
           decrement={this.state.handleDecrement}
           hotels={this.state.hotels}
+          reserve={this.reserveHotel}
         />}/>
      <Route path='/restaurants' render={() => <RestaurantsContainer 
           increment={this.state.handleIncrement} 

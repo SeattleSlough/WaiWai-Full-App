@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
   get 'hotels/filter', to: 'hotels#filter'
   get 'restaurants/filter', to: 'restaurants#filter'
+  get 'hotels/reservation', to: 'hotels#reservation'
   resources :activites
   resources :hotels
   resources :restaurants
   resources :cars
-  resources :carkeys
-  resources :hotelkeys
-  resources :restaurtantkeys
-  resources :activitykeys
+  resources :hotelsusers
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create]

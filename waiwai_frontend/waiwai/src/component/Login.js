@@ -33,7 +33,7 @@ class Login extends React.Component {
 
   handleLogin = (data) => {
       localStorage.setItem("token", data.jwt)
-      localStorage.setItem("userId", data.user_id)
+      localStorage.setItem("user_id", data.user_id)
       this.props.history.push('/portfolio')
 
   }

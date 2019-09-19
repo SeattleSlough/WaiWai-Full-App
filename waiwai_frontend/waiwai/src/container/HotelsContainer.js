@@ -9,13 +9,21 @@ class HotelsContainer extends React.Component {
         return(
             <div>
                {this.props.hotels.map((obj, index) => (
-                    <Hotel key={index} name={obj['name']} rate={obj['rate']} stars={obj['stars']} room={obj['room']} description={obj['description']} image={obj['image']}/>
+                    <Hotel 
+                        key={index} 
+                        id={obj.id} 
+                        name={obj.name} 
+                        rate={obj.rate} 
+                        stars={obj.stars} 
+                        room={obj.room} 
+                        description={obj.description} 
+                        image={obj.image}
+                        reserve={this.props.reserve}
+                    />
                ))}
             </div>
         )
     }
 }
-
-// export default HotelsContainer
 
 export default LoaderHOC('hotels')(HotelsContainer)
