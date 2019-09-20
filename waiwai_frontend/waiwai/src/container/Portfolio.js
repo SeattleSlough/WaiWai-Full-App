@@ -4,6 +4,7 @@ import InterimHotel from '../component/InterimHotel'
 import EmptyHotel from '../component/EmptyHotel'
 import InterimRestaurant from '../component/InterimRestaurant'
 import EmptyRestaurant from '../component/EmptyRestaurant'
+import {Link} from 'react-router-dom'
 
 class Portfolio extends React.Component {
 
@@ -49,6 +50,8 @@ class Portfolio extends React.Component {
                     </div>  
                 </div>
             </div>
+            <br />
+            <button type="button"><Link to='/exit'>Let's Pay For This Boondoggle!!!</Link></button>
             </div>
         )
 }
