@@ -18,6 +18,7 @@ handleSubmit = (ev) => {
 }
 
 create = () => {
+    this.props.setState(this.state.traveler);
     return fetch(user_api, {
         method: 'POST',
         headers: {
@@ -35,6 +36,7 @@ create = () => {
 handleCreate = (data) => {
    localStorage.setItem("token", data.jwt)
    localStorage.setItem("user_id", data.user_id)
+   localStorage.setItem("travelers", this.state.travelers)
    this.props.history.push('/portfolio')
 }
 
@@ -44,6 +46,10 @@ handleChangeUsername = (ev) => {
 
 handleChangePassword = (ev) => {
     this.setState({ password: ev.target.value})
+}
+
+handleChangeTravelers = (ev) => {
+    this.setState({ travelers: ev.target.value })
 }
 
 render() {
@@ -62,6 +68,11 @@ render() {
                         Password:
                         <input type="text" className="login-signup" placeholder="password" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
                         <br />
+                    </label>
+                    <br />
+                    <label>
+                        Number of travelers (max 8):
+                            <input type="number" className="login-signup" placeholder="people" name="party" value={this.state.travelers} min="1" max="8" onChange={this.handleChangeTravelers}/>
                     </label>
                     <br />
                         <input type="submit" value="Submit"/>

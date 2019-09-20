@@ -12,3 +12,5 @@ class ExitContainer extends React.Component {
         )
     }
 }
+
+export default ExitContainer

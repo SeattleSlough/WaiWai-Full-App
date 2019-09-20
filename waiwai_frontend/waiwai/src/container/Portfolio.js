@@ -1,17 +1,15 @@
 import React from 'react'
+
 import InterimHotel from '../component/InterimHotel'
 import EmptyHotel from '../component/EmptyHotel'
-import RestaurantReservations from '../component/RestaurantReservations'
+import InterimRestaurant from '../component/InterimRestaurant'
 import EmptyRestaurant from '../component/EmptyRestaurant'
 
 class Portfolio extends React.Component {
-   componentWillMount() {
-       this.props.reservations()
-   }
 
     hotelIsReserved = () => {
         const length = this.props.hotel.length
-        if(length !== 0) {
+        if(length != 0) {
             return true
         }
     }
@@ -19,6 +17,7 @@ class Portfolio extends React.Component {
     restaurantIsReserved = () => {
         const length = this.props.restaurants.length
         if(length != 0) {
+            console.log(length)
             return true
         }
     }
@@ -33,27 +32,23 @@ class Portfolio extends React.Component {
             }
         
         if(this.restaurantIsReserved()) {
-            restaurantTile = <RestaurantReservations restaurants={this.props.restaurants} delete={this.props.deleteRestaurant} />
+            restaurantTile = <InterimRestaurant restaurants={this.props.restaurants} delete={this.props.deleteRestaurant} />
         } else {
             restaurantTile = <EmptyRestaurant/>
         }
 
         return (
             <div> 
-                <form>
-                    <label>
-                        Number of travelers (max 8):
-                            <input type="number" className="login-signup" placeholder="people" name="party" value={this.state.travelers} min="1" max="8" onChange={this.props.travelers}/>
-                    </label>
-                    <br />
-                            <input type="submit" value="Submit"/>
-                </form>
+                <h4>Total travelers: {this.props.travelers}</h4>
+                <div>
                 <div>
                     {hotelTile}
+                    <br />
                     <div>
                         {restaurantTile}
                     </div>  
                 </div>
+            </div>
             </div>
         )
 }

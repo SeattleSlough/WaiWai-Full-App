@@ -8,7 +8,8 @@ class RestaurantsContainer extends React.Component {
     render() {
         return (
             <div>
-                {this.props.restaurants.map((obj, index) (
+                {this.props.restaurants}
+                {/* {this.props.restaurants.map((obj, index) (
                     <Restaurant     
                         key={index} 
                         id={obj.id}
@@ -18,7 +19,7 @@ class RestaurantsContainer extends React.Component {
                         description={obj.description}
                         image={obj.image}
                     />
-                ))}
+                ))} */}
             </div>
         )
     }

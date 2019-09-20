@@ -9,8 +9,7 @@ import Portfolio from './container/Portfolio'
 import CarsContainer from './container/CarsContainer'
 import HotelsContainer from './container/HotelsContainer'
 import RestaurantsContainer from './container/RestaurantsContainer'
-import ActivitiesContainer from './container/ActivitiesContainer'
-import ExitContainer from '.container/ExitContainer'
+import ExitContainer from './container/ExitContainer'
 
 const hotelApi = 'http://localhost:3000/hotels/filter'
 const restaurantApi = 'http://localhost:3000/restaurants/filter'
@@ -47,7 +46,7 @@ componentDidMount() {
 handleIncrement = (category) => {
   switch (category) {
     case "hotel":
-      this.setState({ hotelIndex : this.state.hotelIndex + 3});
+      this.setState({ hotelIndex : this.state.hotelIndex + 3}, this.refetch());
       break;
     case "restaurant":
       this.setState({ restaurantIndex : this.state.restaurantIndex + 3}, this.refetch());
@@ -95,7 +94,7 @@ handleDecrement = (category) => {
         
 refetch = () => {
     this.fetchHotels()
-    // this.fetchRestaurants()
+    this.fetchRestaurants()
 }
 
 fetchHotels = () => {
@@ -107,8 +106,7 @@ fetchHotels = () => {
     }
   })
   .then(res => res.json())
-  .then(data => {
-    this.setState({ hotels : data})})
+  .then(data => this.setState({ hotels : data}))
 }
 
 reserveHotel = (hotelId) => {
@@ -131,7 +129,7 @@ fetchHotelReservations = () => {
     }
   })
   .then(res => res.json())
-  .then(data => this.setState({userHotel : data}, console.log(this.state.userHotel)))
+  .then(data => this.setState({userHotel : data}))
 }
 
 deleteHotelReservations = (hotelId) => {
@@ -166,33 +164,27 @@ fetchRestaurants = () => {
         'index' : this.state.restaurantIndex
       }
     })
-    .then(res => console.log(res))
-    // .then(data => this.setState({ restaurants : data }))
+    .then(res => res.json())
+    .then(data => this.setState({ restaurants : data }))
   }
     
-  handleChangeTravelers = (ev) => {
-    this.setState({ travelers: ev.target.value })
+setTravelerState = (value) => {
+  this.setState({travelers : value })
 }
 
   render() {
     return (
    <>
    <Router>
-     <Route exact path='/' render={(props) => <Login {...props}/>}/>
-     <Route path='/signup' render={(props) => <Signup {...props}/>}/>
+     <Route exact path='/' render={(props) => <Login {...props} setState={this.setTravelerState}/>}/>
+     <Route path='/signup' render={(props) => <Signup {...props} setState={this.setTravelerState}/>}/>
      <Route path='/exit' render={() => <ExitContainer hotel={this.state.userHotel} restaurants={this.state.userRestaurants} travelers={this.state.travelers}/>}/>
      <Route path='/portfolio' render={() => <Portfolio 
-          travelers={this.handleChangeTravelers}
           hotel={this.state.userHotel}
-          car={this.state.userCar}
+          travelers={this.state.travelers}
           restaurants={this.state.userRestaurants}
-          activities={this.state.userActivities}
           deleteHotel={this.deleteHotelReservations}
           deleteRestaurant={this.deleteRestaurantReservations}
-        />}/>
-     <Route path='/cars' render={() => <CarsContainer 
-          increment={this.handleIncrement} 
-          decrement={this.handleDecrement}
         />}/>
      <Route path='/hotels' render={() => <HotelsContainer 
           increment={this.handleIncrement} 
@@ -200,6 +192,7 @@ fetchRestaurants = () => {
           hotels={this.state.hotels}
           reserve={this.reserveHotel}
           previous={this.previousHotels}
+          next={this.nextHotels}
         />}/>
      <Route path='/restaurants' render={() => <RestaurantsContainer 
           increment={this.handleIncrement} 
@@ -207,10 +200,6 @@ fetchRestaurants = () => {
           restaurants={this.state.restaurants}
           reserve={this.reserveRestaurant}
           previous={this.previousRestaurants}
-        />}/>
-     <Route path='/activities' render={() => <ActivitiesContainer 
-          increment={this.handleIncrement} 
-          decrement={this.handleDecrement}
         />}/>
    </Router>
 
