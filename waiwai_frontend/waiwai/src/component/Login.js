@@ -9,7 +9,8 @@ class Login extends React.Component {
     super();  
     this.state = {
         username: "",
-        password: ""
+        password: "",
+        travelers: 1
     }
   }
 
@@ -56,23 +57,25 @@ class Login extends React.Component {
         return (
             <div className="title"> 
             <div>
-                <h1>Maui Waiwai</h1>
+                <h1 className="app_name">Maui Waiwai</h1>
             <div>
                 <form id="loginForm" onSubmit={(ev) => this.handleSubmit(ev)}>
                     <label>
                         Username:
-                        <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleChangeUsername}/> 
+                        <input type="text" className="login-signup" placeholder="username" name="username" value={this.state.username} onChange={this.handleChangeUsername}/> 
                     </label>
                     <br />
                     <label>
                         Password:
-                        <input type="text" placeholder="password" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
+                        <input type="text" className="login-signup" placeholder="password" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
                     </label>
                     <br />
                         <input type="submit" value="Submit"/>
                 </form>
             </div>
-                <Link to='/signup'>Create Account</Link>
+                <Link className="link" to='/signup'>
+                    Create Account
+                </Link>
             </div>
             </div>
         )

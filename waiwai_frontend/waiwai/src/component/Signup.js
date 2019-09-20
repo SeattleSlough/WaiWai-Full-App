@@ -7,7 +7,8 @@ class Signup extends React.Component {
         super();
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            travelers: 1
         }
     }
 
@@ -25,7 +26,7 @@ create = () => {
         },
         body: JSON.stringify ({
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
         })
     }).then(res => res.json())
     .then(data => this.handleCreate(data))
@@ -47,18 +48,19 @@ handleChangePassword = (ev) => {
 
 render() {
     return (
-        <div>
-            <h1>Create Your Waiwai Account</h1>
+        <div className="title">
+            <h1 className="app_name"> Maui Waiai</h1>
+            <h3 id="create">Create Your Waiwai Account</h3>
             <div>
                 <form onSubmit={(ev) => this.create(ev)}>
                     <label>
                         Username:
-                        <input type="text" placeholder="username" name ="username" value={this.state.username} onChange={this.handleChangeUsername}/>
+                        <input type="text" className="login-signup" placeholder="username" name ="username" value={this.state.username} onChange={this.handleChangeUsername}/>
                         <br />
                     </label>
                     <label>
                         Password:
-                        <input type="text" placeholder="password" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
+                        <input type="text" className="login-signup" placeholder="password" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
                         <br />
                     </label>
                     <br />

@@ -26,6 +26,7 @@ class App extends React.Component {
 constructor() {
   super()
   this.state = {
+    travelers: 1,
     hotelIndex: 0,
     carIndex: 0,
     restaurantIndex: 0,
@@ -50,7 +51,7 @@ componentDidMount() {
 handleIncrement = (category) => {
   switch (category) {
     case "hotel":
-      this.setState({ hotelIndex : this.state.hotelIndex + 3}, this.refetch());
+      this.setState({ hotelIndex : this.state.hotelIndex + 3});
       break;
     case "restaurant":
       this.setState({ restaurantIndex : this.state.restaurantIndex + 3}, this.refetch());
@@ -155,35 +156,21 @@ previousHotels = () => {
   }
 }
 
-// fetchRestaurants = () => {
-  //   return fetch(restaurantApi)
-  //   .then(res => res.json())
-  //   .then(data => this.setState({ restaurants : data}))
-  // }
-  // 
-  // fetchRestaurantKeys = () => {
-    
-    // }
-    
-    // fetchActivities = () => {
-      //   return fetch(activityApi)
-      //   .then(res => res.json())
-      //   .then(data => this.setState({ activities : data }))
-      // }
-      
-      // fetchActivitiyKeys = () => {
-        
-        // }
-        
-  // fetchCars = () => {
- //   return fetch(carApi)
-//   .then(res => res.json())
-//   .then(data => this.setState({ cars : data}))
-// }
+nextHotels = () => {
+  if(this.state.hotelIndex < this.state.hotels.length) {
+    return true
+  }
+}
 
-// fetchCarKeys = () => {
-
-// }
+fetchRestaurants = () => {
+    return fetch(restaurantApi)
+    .then(res => res.json())
+    .then(data => this.setState({ restaurants : data}))
+  }
+    
+  handleChangeTravelers = (ev) => {
+    this.setState({ travelers: ev.target.value })
+}
 
   render() {
     return (
@@ -191,15 +178,15 @@ previousHotels = () => {
    <Router>
      <Route exact path='/' render={(props) => <Login {...props}/>}/>
      <Route path='/signup' render={(props) => <Signup {...props}/>}/>
+     <Route path='/exit' render={() => <ExitContainer hotel={this.state.userHotel} restaurants={this.state.userRestaurants} travelers={this.state.travelers}/>}/>
      <Route path='/portfolio' render={() => <Portfolio 
+          travelers={this.handleChangeTravelers}
           hotel={this.state.userHotel}
           car={this.state.userCar}
           restaurants={this.state.userRestaurants}
           activities={this.state.userActivities}
-          increment={this.handleIncrement} 
-          decrement={this.handleDecrement}
-          delete={this.deleteHotelReservations}
-          reservations={this.fetchHotelReservations}
+          deleteHotel={this.deleteHotelReservations}
+          deleteRestaurant={this.deleteRestaurantReservations}
         />}/>
      <Route path='/cars' render={() => <CarsContainer 
           increment={this.handleIncrement} 
@@ -216,6 +203,8 @@ previousHotels = () => {
           increment={this.handleIncrement} 
           decrement={this.handleDecrement}
           restaurants={this.state.restaurants}
+          reserve={this.reserveRestaurant}
+          previous={this.previousRestaurants}
         />}/>
      <Route path='/activities' render={() => <ActivitiesContainer 
           increment={this.handleIncrement} 

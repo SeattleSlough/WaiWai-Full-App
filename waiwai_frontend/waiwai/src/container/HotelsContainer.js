@@ -10,7 +10,11 @@ class HotelsContainer extends React.Component {
     render() {
         let button
         if(this.props.previous()) {
-            button = <button type="button" className="increment_button" value="hotel" onClick={(ev) => this.props.decrement(ev.target.value)}>Previous</button>
+            prevButton = <button type="button" className="increment_button" value="hotel" onClick={(ev) => this.props.decrement(ev.target.value)}>Previous 3</button>
+        }
+
+        if(this.props.next()) {
+            nextButton = <button type="button" className="increment_button" value="hotel" onClick={(ev) => this.props.increment(ev.target.value)}>Next 3</button>
         }
 
         return(
@@ -32,8 +36,10 @@ class HotelsContainer extends React.Component {
                     />
                ))}
             </div>
-            {button}
-             <button type="button" className="increment_button" value="hotel" onClick={(ev) => this.props.increment(ev.target.value)}>Next</button> 
+            <br />
+            {prevButton}
+            {nextButton}
+              
             </div>
         )
     }
