@@ -54,7 +54,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <body className="title"> 
+            <div className="title"> 
             <div>
                 <h1>Maui Waiwai</h1>
             <div>
@@ -74,7 +74,7 @@ class Login extends React.Component {
             </div>
                 <Link to='/signup'>Create Account</Link>
             </div>
-            </body>
+            </div>
         )
     }
 }

@@ -11,7 +11,7 @@ class HotelsController < ActionController::API
 
     def filter
         @hotels = Hotel.all 
-        @filter = @hotels.slice(request.headers['HTTP_INDEX'].to_i,5)
+        @filter = @hotels.slice(request.headers['HTTP_INDEX'].to_i,3)
         render json: @filter
     end
 

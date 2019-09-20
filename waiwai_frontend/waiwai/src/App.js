@@ -50,16 +50,16 @@ componentDidMount() {
 handleIncrement = (category) => {
   switch (category) {
     case "hotel":
-      this.setState({ hotelIndex : this.state.hotelIndex + 5}, this.refetch());
+      this.setState({ hotelIndex : this.state.hotelIndex + 3}, this.refetch());
       break;
     case "restaurant":
-      this.setState({ restaurantIndex : this.state.restaurantIndex + 5}, this.refetch());
+      this.setState({ restaurantIndex : this.state.restaurantIndex + 3}, this.refetch());
       break;
     case "activity":
-      this.setState({ activityIndex : this.state.activityIndex + 5}, this.refetch());
+      this.setState({ activityIndex : this.state.activityIndex + 3}, this.refetch());
       break;
     case "car":
-      this.setState({ carIndex : this.state.carIndex + 5}, this.refetch())
+      this.setState({ carIndex : this.state.carIndex + 3}, this.refetch())
   }
 }
 
@@ -67,29 +67,29 @@ handleIncrement = (category) => {
 handleDecrement = (category) => {
   switch (category) {
     case "hotel":
-      if((this.state.hotelIndex - 5) > 0) {
-        this.setState({ hotelIndex : this.state.hotelIndex - 5}, this.refetch())
+      if((this.state.hotelIndex - 3) > 0) {
+        this.setState({ hotelIndex : this.state.hotelIndex - 3}, this.refetch())
       } else {
         this.setState({ hotelIndex : 0})
       }
       break;
       case "restaurant":
-        if((this.state.restaurantIndex - 5) > 0) {
-          this.setState({ restaurantIndex : this.state.restaurantIndex + 5}, this.refetch())
+        if((this.state.restaurantIndex - 3) > 0) {
+          this.setState({ restaurantIndex : this.state.restaurantIndex - 3}, this.refetch())
         } else {
           this.setState({ restaurantIndex : 0})
         }
         break;
         case "activity":
-          if((this.state.activityIndex - 5) > 0) {
-            this.setState({ activityIndex : this.state.activityIndex + 5}, this.refetch())
+          if((this.state.activityIndex - 3) > 0) {
+            this.setState({ activityIndex : this.state.activityIndex - 3}, this.refetch())
           } else {
             this.setState({ activityIndex : 0})
           }
           break;
           case "car":
-            if((this.state.carIndex - 5) > 0) {
-              this.setState({ carIndex : this.state.carIndex + 5}, this.refetch())
+            if((this.state.carIndex - 3) > 0) {
+              this.setState({ carIndex : this.state.carIndex - 3}, this.refetch())
             } else {
               this.setState({ carIndex : 0})
             }
@@ -98,7 +98,7 @@ handleDecrement = (category) => {
         
 refetch = () => {
     this.fetchHotels()
-    this.fetchRestaurants()
+    // this.fetchRestaurants()
 }
 
 fetchHotels = () => {
@@ -134,7 +134,7 @@ fetchHotelReservations = () => {
     }
   })
   .then(res => res.json())
-  .then(data => this.setState({userHotel : data}))
+  .then(data => this.setState({userHotel : data}, console.log(this.state.userHotel)))
 }
 
 deleteHotelReservations = (hotelId) => {
@@ -142,9 +142,17 @@ deleteHotelReservations = (hotelId) => {
     method: 'GET',
     headers: {
       'Content-Type' : 'application/json',
-      'user' : hotelId
+      'hotel' : hotelId,
+      'user' : `${localStorage.getItem("user_id")}`
     }
   })
+  .then(this.setState({ userHotel : []}))
+}
+
+previousHotels = () => {
+  if(this.state.hotelIndex > 3) {
+    return true
+  }
 }
 
 // fetchRestaurants = () => {
@@ -188,27 +196,30 @@ deleteHotelReservations = (hotelId) => {
           car={this.state.userCar}
           restaurants={this.state.userRestaurants}
           activities={this.state.userActivities}
-          increment={this.state.handleIncrement} 
-          decrement={this.state.handleDecrement}
+          increment={this.handleIncrement} 
+          decrement={this.handleDecrement}
+          delete={this.deleteHotelReservations}
+          reservations={this.fetchHotelReservations}
         />}/>
      <Route path='/cars' render={() => <CarsContainer 
-          increment={this.state.handleIncrement} 
-          decrement={this.state.handleDecrement}
+          increment={this.handleIncrement} 
+          decrement={this.handleDecrement}
         />}/>
      <Route path='/hotels' render={() => <HotelsContainer 
-          increment={this.state.handleIncrement} 
-          decrement={this.state.handleDecrement}
+          increment={this.handleIncrement} 
+          decrement={this.handleDecrement}
           hotels={this.state.hotels}
           reserve={this.reserveHotel}
+          previous={this.previousHotels}
         />}/>
      <Route path='/restaurants' render={() => <RestaurantsContainer 
-          increment={this.state.handleIncrement} 
-          decrement={this.state.handleDecrement}
+          increment={this.handleIncrement} 
+          decrement={this.handleDecrement}
           restaurants={this.state.restaurants}
         />}/>
      <Route path='/activities' render={() => <ActivitiesContainer 
-          increment={this.state.handleIncrement} 
-          decrement={this.state.handleDecrement}
+          increment={this.handleIncrement} 
+          decrement={this.handleDecrement}
         />}/>
    </Router>
 
