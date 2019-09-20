@@ -24,4 +24,4 @@ class RestaurantsContainer extends React.Component {
     }
 }
 
-export default LoaderHOC('prop name')(RestaurantsContainer)
+export default LoaderHOC('restaurants')(RestaurantsContainer)

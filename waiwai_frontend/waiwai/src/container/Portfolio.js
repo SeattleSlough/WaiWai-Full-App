@@ -1,7 +1,8 @@
 import React from 'react'
 import InterimHotel from '../component/InterimHotel'
-import Empty from '../component/EmptyHotel'
+import EmptyHotel from '../component/EmptyHotel'
 import RestaurantReservations from '../component/RestaurantReservations'
+import EmptyRestaurant from '../component/EmptyRestaurant'
 
 class Portfolio extends React.Component {
    componentWillMount() {
@@ -23,7 +24,8 @@ class Portfolio extends React.Component {
     }
 
     render() {
-        let tile;
+        let hotelTile;
+        let restaurantTile;
         if(this.hotelIsReserved()) {
             hotelTile = <InterimHotel hotel={this.props.hotel} delete={this.props.deleteHotel}/>
         } else {

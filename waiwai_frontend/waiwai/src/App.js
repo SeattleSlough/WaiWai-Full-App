@@ -10,17 +10,13 @@ import CarsContainer from './container/CarsContainer'
 import HotelsContainer from './container/HotelsContainer'
 import RestaurantsContainer from './container/RestaurantsContainer'
 import ActivitiesContainer from './container/ActivitiesContainer'
+import ExitContainer from '.container/ExitContainer'
 
 const hotelApi = 'http://localhost:3000/hotels/filter'
-// const carApi = 'http://localhost:3000/cars/filter'
-// const restaurantApi = 'http://localhost:3000/restaurants/filter'
-// const activityApi = 'http://localhost:3000/activities/filter'
-// const carKeys = 'http://localhost:3000/carkeys'
+const restaurantApi = 'http://localhost:3000/restaurants/filter'
 const makeHotelReservationApi = 'http://localhost:3000/hotels/reservation'
 const getHotelReservationsApi = 'http://localhost:3000/hotels/reservations'
 const deleteHotelReservationsApi = 'http://localhost:3000/hotels/delete'
-// const restaurantKeys = 'http://localhost:3000/restaurantkeys'
-// const activityKeys = 'http://localhost:3000/activitykeys'
 
 class App extends React.Component {
 constructor() {
@@ -45,7 +41,7 @@ constructor() {
 componentDidMount() {
   this.fetchHotels()
   this.fetchHotelReservations()
-  // this.fetchRestaurants()
+  this.fetchRestaurants()
 }
 
 handleIncrement = (category) => {
@@ -163,9 +159,15 @@ nextHotels = () => {
 }
 
 fetchRestaurants = () => {
-    return fetch(restaurantApi)
-    .then(res => res.json())
-    .then(data => this.setState({ restaurants : data}))
+    return fetch(restaurantApi, {
+      method: 'GET',
+      headers: {
+        'Content-Type' : 'application/json',
+        'index' : this.state.restaurantIndex
+      }
+    })
+    .then(res => console.log(res))
+    // .then(data => this.setState({ restaurants : data }))
   }
     
   handleChangeTravelers = (ev) => {
