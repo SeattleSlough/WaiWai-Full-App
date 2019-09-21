@@ -12,11 +12,14 @@ import ExitContainer from './container/ExitContainer'
 
 const hotelApi ='http://localhost:3000/hotels'
 const restaurantsApi = 'http://localhost:3000/restaurants'
-const hotelFilterApi = 'http://localhost:3000/hotels/filter'
-const restaurantFilterApi = 'http://localhost:3000/restaurants/filter'
 const makeHotelReservationApi = 'http://localhost:3000/hotels/reservation'
 const getHotelReservationsApi = 'http://localhost:3000/hotels/reservations'
 const deleteHotelReservationsApi = 'http://localhost:3000/hotels/delete'
+const hotelFilterApi = 'http://localhost:3000/hotels/filter'
+const restaurantFilterApi = 'http://localhost:3000/restaurants/filter'
+const makeRestaurantReservationApi = 'http://localhost:3000/restaurants/reservation'
+const getRestaurantReservationsApi = 'http://localhost:3000/restaurants/reservations'
+const deleteRestaurantReservationsApi = 'http://localhost:3000/restaurants/delete'
 
 class App extends React.Component {
 constructor() {
@@ -29,12 +32,8 @@ constructor() {
     restaurantsLength: 0,
     hotels: [],
     restaurants: [],
-    activites: [],
-    cars: [],
     userHotel: [],
-    userCar: [],
-    userRestaurants: [],
-    userActivities: []
+    userRestaurants: []
   }
 }
 
@@ -181,6 +180,10 @@ fetchRestaurantsLength = () => {
   return fetch(restaurantsApi)
   .then(res => res.json())
   .then(data => this.setState({restaurantsLength : data.length}))
+}
+
+reserveRestaurant = (restaurantId) => {
+
 }
 
 previousRestaurants = () => {
