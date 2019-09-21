@@ -48,16 +48,10 @@ componentDidMount() {
 handleIncrement = (category) => {
   switch (category) {
     case "hotel":
-      this.setState({ hotelIndex : this.state.hotelIndex + 3}, this.refetch());
+      this.setState({ hotelIndex : this.state.hotelIndex + 3}, this.refetchHotels);
       break;
     case "restaurant":
-      this.setState({ restaurantIndex : this.state.restaurantIndex + 3}, this.refetch());
-      break;
-    case "activity":
-      this.setState({ activityIndex : this.state.activityIndex + 3}, this.refetch());
-      break;
-    case "car":
-      this.setState({ carIndex : this.state.carIndex + 3}, this.refetch())
+      this.setState({ restaurantIndex : this.state.restaurantIndex + 3});
   }
 }
 
@@ -66,7 +60,7 @@ handleDecrement = (category) => {
   switch (category) {
     case "hotel":
       if((this.state.hotelIndex - 3) >= 0) {
-        this.setState({ hotelIndex : this.state.hotelIndex - 3}, this.refetch())
+        this.setState({ hotelIndex : this.state.hotelIndex - 3}, this.refetchHotels)
       } else {
         this.setState({ hotelIndex : 0})
       }
@@ -77,29 +71,27 @@ handleDecrement = (category) => {
         } else {
           this.setState({ restaurantIndex : 0})
         }
-        break;
-        case "activity":
-          if((this.state.activityIndex - 3) >= 0) {
-            this.setState({ activityIndex : this.state.activityIndex - 3}, this.refetch())
-          } else {
-            this.setState({ activityIndex : 0})
-          }
-          break;
-          case "car":
-            if((this.state.carIndex - 3) >= 0) {
-              this.setState({ carIndex : this.state.carIndex - 3}, this.refetch())
-            } else {
-              this.setState({ carIndex : 0})
-            }
           }
         }
         
-refetch = () => {
-    this.fetchHotels()
-    this.fetchRestaurants()
-}
+// refetch = () => {
+//     this.fetchHotels()
+//     this.fetchRestaurants()
+// }
 
 fetchHotels = () => {
+  return fetch(hotelFilterApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'index' : this.state.hotelIndex
+    }
+  })
+  .then(res => res.json())
+  .then(data => this.setState({ hotels : data}))
+}
+
+refetchHotels = () => {
   return fetch(hotelFilterApi, {
     method: 'GET',
     headers: {
@@ -230,7 +222,7 @@ setTravelerState = (value) => {
           reserve={this.reserveHotel}
           previous={this.previousHotels}
           next={this.nextHotels}
-          refetch={this.refetch}
+          refetch={this.refetchHotels}
         />}/>
      <Route path='/restaurants' render={() => <RestaurantsContainer 
           increment={this.handleIncrement} 

@@ -6,9 +6,9 @@ import LoaderHOC from '../HOC/LoaderHOC'
 
 class HotelsContainer extends React.Component {
 
-    // componentDidUpdate() {
-    //     this.props.refetch()
-    // }    
+    componentDidMount() {
+        this.props.refetch()
+    }    
 
     render() {
         {console.log(this.props.index)}
