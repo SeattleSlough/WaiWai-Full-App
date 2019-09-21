@@ -65,28 +65,28 @@ handleIncrement = (category) => {
 handleDecrement = (category) => {
   switch (category) {
     case "hotel":
-      if((this.state.hotelIndex - 3) > 0) {
+      if((this.state.hotelIndex - 3) >= 0) {
         this.setState({ hotelIndex : this.state.hotelIndex - 3}, this.refetch())
       } else {
         this.setState({ hotelIndex : 0})
       }
       break;
       case "restaurant":
-        if((this.state.restaurantIndex - 3) > 0) {
+        if((this.state.restaurantIndex - 3) >= 0) {
           this.setState({ restaurantIndex : this.state.restaurantIndex - 3}, this.refetch())
         } else {
           this.setState({ restaurantIndex : 0})
         }
         break;
         case "activity":
-          if((this.state.activityIndex - 3) > 0) {
+          if((this.state.activityIndex - 3) >= 0) {
             this.setState({ activityIndex : this.state.activityIndex - 3}, this.refetch())
           } else {
             this.setState({ activityIndex : 0})
           }
           break;
           case "car":
-            if((this.state.carIndex - 3) > 0) {
+            if((this.state.carIndex - 3) >= 0) {
               this.setState({ carIndex : this.state.carIndex - 3}, this.refetch())
             } else {
               this.setState({ carIndex : 0})
@@ -126,6 +126,8 @@ reserveHotel = (hotelId) => {
       'user' : `${localStorage.getItem("user_id")}`
     }
   })
+  .then(res => res.json())
+  .then(data => this.fetchHotelReservations())
 }
 
 fetchHotelReservations = () => {
@@ -153,13 +155,13 @@ deleteHotelReservations = (hotelId) => {
 }
 
 previousHotels = () => {
-  if(this.state.hotelIndex > 3) {
+  if(this.state.hotelIndex >= 3) {
     return true
   }
 }
 
 nextHotels = () => {
-  if(this.state.hotelIndex < this.state.hotelsLength) {
+  if(this.state.hotelIndex < this.state.hotelsLength - 3) {
     return true
   }
 }
@@ -187,13 +189,13 @@ reserveRestaurant = (restaurantId) => {
 }
 
 previousRestaurants = () => {
-  if(this.state.restaurantIndex > 3) {
+  if(this.state.restaurantIndex >= 3) {
     return true
   }
 }
   
 nextRestaurants = () => {
-  if(this.state.restaurantIndex < this.state.restaurantsLength) {
+  if(this.state.restaurantIndex < this.state.restaurantsLength - 3) {
     return true
   }
 }
@@ -221,12 +223,14 @@ setTravelerState = (value) => {
           deleteRestaurant={this.deleteRestaurantReservations}
         />}/>
      <Route path='/hotels' render={() => <HotelsContainer 
+          index={this.state.hotelIndex}
           increment={this.handleIncrement} 
           decrement={this.handleDecrement}
           hotels={this.state.hotels}
           reserve={this.reserveHotel}
           previous={this.previousHotels}
           next={this.nextHotels}
+          refetch={this.refetch}
         />}/>
      <Route path='/restaurants' render={() => <RestaurantsContainer 
           increment={this.handleIncrement} 

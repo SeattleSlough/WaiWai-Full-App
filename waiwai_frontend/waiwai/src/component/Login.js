@@ -15,7 +15,7 @@ class Login extends React.Component {
   }
 
   login = () => {
-      this.props.setState(this.state.traveler);
+    this.props.setState(this.state.travelers);
       return fetch(user_api, {
           method: 'POST',
           headers: {

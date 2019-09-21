@@ -19,6 +19,8 @@ class HotelsController < ActionController::API
         @user = User.find(request.headers['HTTP_USER'])
         if @user.hotels.length === 0
             @user.hotels.push(Hotel.find(request.headers['HTTP_HOTEL']))
+        else 
+            render json: @user.hotels
         end
         render json: @user.hotels
     end

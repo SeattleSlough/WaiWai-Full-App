@@ -10,14 +10,14 @@ class Portfolio extends React.Component {
 
     hotelIsReserved = () => {
         const length = this.props.hotel.length
-        if(length != 0) {
+        if(length !== 0) {
             return true
         }
     }
 
     restaurantIsReserved = () => {
         const length = this.props.restaurants.length
-        if(length != 0) {
+        if(length !== 0) {
             console.log(length)
             return true
         }
