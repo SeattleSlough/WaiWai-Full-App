@@ -10,7 +10,7 @@ class ExitContainer extends React.Component {
                 <div>
                     <div>
                         {this.props.hotel.map((obj,index) => (
-                            <HotelBill cost={obj.rate} travelers={this.props.travelers}/>
+                            <HotelBill key={index} cost={obj.rate} travelers={this.props.travelers}/>
                         ))}
                         <div>
 
