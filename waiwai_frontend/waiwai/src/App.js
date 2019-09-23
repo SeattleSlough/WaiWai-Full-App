@@ -128,7 +128,6 @@ deleteHotelReservations = (hotelId) => {
     }
   })
   .then(this.setState({ userHotel : []}))
-  // .then(data => this.setState({ userRestaurants : this.prevState.userRestaurants})))
 }
 
 previousHotels = () => {
@@ -166,7 +165,7 @@ reserveRestaurant = (restaurantId) => {
     method: 'GET',
     headers: {
       'Content-Type' : 'application/json',
-      'hotel' : restaurantId,
+      'restaurant' : restaurantId,
       'user' : `${localStorage.getItem("user_id")}`
     }
   })
@@ -191,12 +190,12 @@ deleteRestaurantReservations = (restaurantId) => {
     method: 'GET',
     headers: {
       'Content-Type' : 'application/json',
-      'hotel' : restaurantId,
+      'restaurant' : restaurantId,
       'user' : `${localStorage.getItem("user_id")}`
     }
   })
-  .then(res => res.json())
-  .then(data => this.setState({ userRestaurants : data}))
+  .then(res => console.log(res))
+  .then(data => this.fetchRestaurantReservations())
 }
 
 previousRestaurants = () => {

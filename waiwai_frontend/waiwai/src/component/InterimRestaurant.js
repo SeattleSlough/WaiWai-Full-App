@@ -7,7 +7,8 @@ class InterimRestaurant extends React.Component {
     render() {
         return (
             <div>
-            {this.props.restaurant.map((obj, index) => (
+              
+            {this.props.restaurants.map((obj, index) => (
                      <RestaurantReservations 
                         key={index}
                         name={obj.name}
@@ -21,4 +22,4 @@ class InterimRestaurant extends React.Component {
     }
 }
 
-export default LoaderHOC('hotel')(InterimRestaurant)
+export default LoaderHOC('restaurants')(InterimRestaurant)

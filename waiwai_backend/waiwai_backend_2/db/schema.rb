@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_193625) do
     t.text "name"
     t.text "description"
     t.text "image"
-    t.float "cost_per_person"
+    t.integer "cost_per_person"
     t.float "stars"
   end
 

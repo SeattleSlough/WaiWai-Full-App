@@ -14,12 +14,6 @@ class Portfolio extends React.Component {
     }
 
     hotelIsReserved = () => {
-            // return (
-            //     this.props.hotel === null ||
-            //     this.props.hotel === undefined ||
-            //     (this.props.hotel.hasOwnProperty('length') && this.props.hotel.length === 0) ||
-            //     (this.props.hotel.constructor === Object && Object.keys(this.props.hotel).length === 0)
-            // );
         const length = this.props.hotel.length
         if(length !== 0 && this.props.hotel !== undefined) {
             return true
@@ -28,7 +22,7 @@ class Portfolio extends React.Component {
 
     restaurantIsReserved = () => {
         const length = this.props.restaurants.length
-        if(length !== 0) {
+        if(length !== 0 && this.props.restaurants !== undefined) {
             return true
         }
     }
@@ -42,11 +36,11 @@ class Portfolio extends React.Component {
             hotelTile = <EmptyHotel/>
             }
         
-        // if(this.restaurantIsReserved()) {
-        //     restaurantTile = <InterimRestaurant restaurants={this.props.restaurants} delete={this.props.deleteRestaurant} />
-        // } else {
-        //     restaurantTile = <EmptyRestaurant/>
-        // }
+        if(this.restaurantIsReserved()) {
+            restaurantTile = <InterimRestaurant restaurants={this.props.restaurants} delete={this.props.deleteRestaurant} />
+        } else {
+            restaurantTile = <EmptyRestaurant/>
+        }
 
         return (
             <div> 
@@ -56,7 +50,8 @@ class Portfolio extends React.Component {
                     {hotelTile}
                     <br />
                     <div>
-                        {/* {restaurantTile} */}
+                    {console.log(this.props.restaurants)}
+                        {restaurantTile}
                     </div>  
                 </div>
             </div>
