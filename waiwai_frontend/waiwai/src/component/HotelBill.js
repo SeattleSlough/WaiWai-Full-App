@@ -1,9 +1,10 @@
 import React from 'react'
 
 function HotelBill(props) {
+    const total = (props.cost) * 10
     return (
         <div>
-            <h4> Hotel total (10 nights): ${(props.cost)*10}</h4>
+            <h4> Hotel total (10 nights): ${total}</h4>
         </div>
     )
 }

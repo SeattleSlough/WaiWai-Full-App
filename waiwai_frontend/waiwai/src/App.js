@@ -224,6 +224,9 @@ setTravelerState = (value) => {
           hotel={this.state.userHotel} 
           restaurants={this.state.userRestaurants} 
           travelers={this.state.travelers}/>}
+          hotelTotal={this.state.hotelTotal}
+          setHotelTotal={this.setHotelTotal}
+
         />
      <Route path='/portfolio' render={() => <Portfolio 
           hotel={this.state.userHotel}
