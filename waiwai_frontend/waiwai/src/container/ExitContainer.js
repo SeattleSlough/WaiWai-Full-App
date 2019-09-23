@@ -66,9 +66,22 @@ class ExitContainer extends React.Component {
         this.setState({savings : ev.target.value})
     }
 
-    render() {
-        return(
+tco = () => {
+    if(this.state.income !== 0 && this.state.savings !== 0) {
+        return true
+    }
+}
 
+    render() {
+
+        let tcoTile;
+        if(this.tco()) {
+            tcoTile = <h4>Based on your income of ${this.state.income} and savings rate of {this.state.savings}%, it would take you {((this.state.hotelTotal + this.state.restaurantTotal)/(this.state.income * (this.state.savings/100))).toFixed(2)} years to pay for this trip.</h4>    
+        } else {
+            tcoTile = <h4>Please enter your annual income and projected savings rate to see how Waiwai you are.</h4>
+        }
+
+        return(
             <div>
                 <h2><Link to='/portfolio'>Go To Your Itinerary</Link></h2>
                 <div>
@@ -112,8 +125,7 @@ class ExitContainer extends React.Component {
                           </label>
                       </form>
                 </div>
-                    <h4>Based on your income of ${this.state.income} and savings rate of {this.state.savings}%, it would take you {(this.state.hotelTotal + this.state.restaurantTotal)/(this.state.income * (this.state.savings/100))} years to pay for this trip.</h4>
-
+                    {tcoTile}
             </div>
           
         )
