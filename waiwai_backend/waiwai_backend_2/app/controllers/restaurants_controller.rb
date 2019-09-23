@@ -33,5 +33,6 @@ class RestaurantsController < ActionController::API
     def delete_reservation
         @user = User.find(request.headers['HTTP_USER'])
         @user.restaurants.delete(Restaurant.find(request.headers['HTTP_RESTAURANT']))
+        render json: @user.restaurants
     end
 end
