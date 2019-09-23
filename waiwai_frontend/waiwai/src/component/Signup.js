@@ -18,12 +18,10 @@ handleSubmit = (ev) => {
 }
 
 create = () => {
-    this.props.setState(this.state.traveler);
     return fetch(user_api, {
         method: 'POST',
         headers: {
             'Content-Type' : 'application/json',
-            'Accept' : 'application/json'
         },
         body: JSON.stringify ({
             username: this.state.username,
@@ -31,6 +29,7 @@ create = () => {
         })
     }).then(res => res.json())
     .then(data => this.handleCreate(data))
+    .then(this.props.setState(this.state.traveler))
 }
 
 handleCreate = (data) => {
@@ -58,7 +57,7 @@ render() {
             <h1 className="app_name"> Maui Waiai</h1>
             <h3 id="create">Create Your Waiwai Account</h3>
             <div>
-                <form onSubmit={(ev) => this.create(ev)}>
+                <form onSubmit={(ev) => this.handleSubmit(ev)}>
                     <label>
                         Username:
                         <input type="text" className="login-signup" placeholder="username" name ="username" value={this.state.username} onChange={this.handleChangeUsername}/>

@@ -10,11 +10,11 @@ class RestaurantsContainer extends React.Component {
         let prevButton;
         let nextButton;
         if(this.props.previous()) {
-             prevButton = <button type="button" className="increment_button" value="hotel" onClick={(ev) => this.props.decrement(ev.target.value)}>Previous 3</button>
+             prevButton = <button type="button" className="increment_button" value="restaurant" onClick={(ev) => this.props.decrement(ev.target.value)}>Previous 3</button>
         }
 
         if(this.props.next()) {
-            nextButton = <button type="button" className="increment_button" value="hotel" onClick={(ev) => this.props.increment(ev.target.value)}>Next 3</button>
+            nextButton = <button type="button" className="increment_button" value="restaurant" onClick={(ev) => this.props.increment(ev.target.value)}>Next 3</button>
         }
         return (
             <div>
@@ -30,6 +30,7 @@ class RestaurantsContainer extends React.Component {
                             cpp={obj.cost_per_person}
                             description={obj.description}
                             image={obj.image}
+                            reserve={this.props.reserve}
                         />
                 ))}
                 </div>

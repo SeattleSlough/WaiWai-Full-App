@@ -4,11 +4,7 @@ import {Link} from 'react-router-dom'
 
 import LoaderHOC from '../HOC/LoaderHOC'
 
-class HotelsContainer extends React.Component {
-
-    componentDidMount() {
-        this.props.refetch()
-    }    
+class HotelsContainer extends React.Component {  
 
     render() {
         {console.log(this.props.index)}

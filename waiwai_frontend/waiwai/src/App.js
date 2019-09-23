@@ -43,15 +43,16 @@ componentDidMount() {
   this.fetchHotelsLength()
   this.fetchRestaurants()
   this.fetchRestaurantsLength()
+  this.fetchRestaurantReservations()
 }
 
 handleIncrement = (category) => {
   switch (category) {
     case "hotel":
-      this.setState({ hotelIndex : this.state.hotelIndex + 3}, this.refetchHotels);
+      this.setState({ hotelIndex : this.state.hotelIndex + 3}, this.fetchHotels);
       break;
     case "restaurant":
-      this.setState({ restaurantIndex : this.state.restaurantIndex + 3});
+      this.setState({ restaurantIndex : this.state.restaurantIndex + 3}, this.fetchRestaurants);
   }
 }
 
@@ -60,38 +61,21 @@ handleDecrement = (category) => {
   switch (category) {
     case "hotel":
       if((this.state.hotelIndex - 3) >= 0) {
-        this.setState({ hotelIndex : this.state.hotelIndex - 3}, this.refetchHotels)
+        this.setState({ hotelIndex : this.state.hotelIndex - 3}, this.fetchHotels)
       } else {
         this.setState({ hotelIndex : 0})
       }
       break;
       case "restaurant":
         if((this.state.restaurantIndex - 3) >= 0) {
-          this.setState({ restaurantIndex : this.state.restaurantIndex - 3}, this.refetch())
+          this.setState({ restaurantIndex : this.state.restaurantIndex - 3}, this.fetchRestaurants)
         } else {
           this.setState({ restaurantIndex : 0})
         }
           }
         }
-        
-// refetch = () => {
-//     this.fetchHotels()
-//     this.fetchRestaurants()
-// }
 
 fetchHotels = () => {
-  return fetch(hotelFilterApi, {
-    method: 'GET',
-    headers: {
-      'Content-Type' : 'application/json',
-      'index' : this.state.hotelIndex
-    }
-  })
-  .then(res => res.json())
-  .then(data => this.setState({ hotels : data}))
-}
-
-refetchHotels = () => {
   return fetch(hotelFilterApi, {
     method: 'GET',
     headers: {
@@ -144,6 +128,7 @@ deleteHotelReservations = (hotelId) => {
     }
   })
   .then(this.setState({ userHotel : []}))
+  // .then(data => this.setState({ userRestaurants : this.prevState.userRestaurants})))
 }
 
 previousHotels = () => {
@@ -177,7 +162,41 @@ fetchRestaurantsLength = () => {
 }
 
 reserveRestaurant = (restaurantId) => {
+  fetch(makeRestaurantReservationApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'hotel' : restaurantId,
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => this.fetchRestaurantReservations())
+}
 
+fetchRestaurantReservations = () => {
+  fetch(getRestaurantReservationsApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => this.setState({userRestaurants : data}))
+}
+
+deleteRestaurantReservations = (restaurantId) => {
+  fetch(deleteRestaurantReservationsApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'hotel' : restaurantId,
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => this.setState({ userRestaurants : data}))
 }
 
 previousRestaurants = () => {
@@ -213,6 +232,8 @@ setTravelerState = (value) => {
           restaurants={this.state.userRestaurants}
           deleteHotel={this.deleteHotelReservations}
           deleteRestaurant={this.deleteRestaurantReservations}
+          fetchHotel={this.fetchHotelReservations}
+          fetchRestaurant={this.fetchRestaurantReservations}
         />}/>
      <Route path='/hotels' render={() => <HotelsContainer 
           index={this.state.hotelIndex}

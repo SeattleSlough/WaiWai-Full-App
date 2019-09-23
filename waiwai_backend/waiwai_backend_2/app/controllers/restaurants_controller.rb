@@ -15,12 +15,14 @@ class RestaurantsController < ActionController::API
         render json: @filter
     end
 
-    def reservation
+    def create_reservation
         @user = User.find(request.headers['HTTP_USER'])
         if @user.restaurants.length <= 15
             @user.restaurants.push(Restaurant.find(request.headers['HTTP_RESTAURANT']))
+        else
+            render json: @user.restaurants
         end
-        render json: @user.hotels
+        render json: @user.restaurants
     end
 
     def view_reservations
@@ -28,7 +30,7 @@ class RestaurantsController < ActionController::API
         render json: @user.restaurants
     end
 
-    def deleteReservation
+    def delete_reservation
         @user = User.find(request.headers['HTTP_USER'])
         @user.restaurants.delete(Restaurant.find(request.headers['HTTP_RESTAURANT']))
     end

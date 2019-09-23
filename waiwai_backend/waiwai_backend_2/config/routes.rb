@@ -6,11 +6,10 @@ Rails.application.routes.draw do
   get 'hotels/reservations', to: 'hotels#view_reservations'
   get 'restaurants/reservation', to: 'restaurants#create_reservation'
   get 'restaurants/reservations', to: 'restaurants#view_reservations'
+  get 'restaurants/delete', to: 'restaurants#delete_reservation'
 
-  resources :activites
   resources :hotels
   resources :restaurants
-  resources :cars
   resources :hotelsusers
   namespace :api do
     namespace :v1 do
