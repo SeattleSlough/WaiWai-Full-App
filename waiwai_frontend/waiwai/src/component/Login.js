@@ -9,11 +9,13 @@ class Login extends React.Component {
     super();  
     this.state = {
         username: "",
-        password: ""
+        password: "",
+        travelers: 1
     }
   }
 
   login = () => {
+    this.props.setState(this.state.travelers);
       return fetch(user_api, {
           method: 'POST',
           headers: {
@@ -25,15 +27,13 @@ class Login extends React.Component {
               password: this.state.password
           })
       }).then(res => res.json())
-      .then(data => {
-          console.log(data)
-          this.handleLogin(data)
-      })
+      .then(data => this.handleLogin(data))
   }
 
   handleLogin = (data) => {
       localStorage.setItem("token", data.jwt)
-      localStorage.setItem("userId", data.user_id)
+      localStorage.setItem("user_id", data.user_id)
+      localStorage.setItem("travelers", this.state.travelers)
       this.props.history.push('/portfolio')
 
   }
@@ -51,30 +51,41 @@ class Login extends React.Component {
       this.setState({password: ev.target.value})
   }
 
+  handleChangeTravelers = (ev) => {
+    this.setState({ travelers: ev.target.value })
+}
+
 
     render() {
         return (
-            <body className="title"> 
+            <div className="title"> 
             <div>
-                <h1>Maui Waiwai</h1>
+                <h1 className="app_name">Maui Waiwai</h1>
             <div>
                 <form id="loginForm" onSubmit={(ev) => this.handleSubmit(ev)}>
                     <label>
                         Username:
-                        <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleChangeUsername}/> 
+                        <input type="text" className="login-signup" placeholder="username" name="username" value={this.state.username} onChange={this.handleChangeUsername}/> 
                     </label>
                     <br />
                     <label>
                         Password:
-                        <input type="text" placeholder="password" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
+                        <input type="text" className="login-signup" placeholder="password" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
+                    </label>
+                    <br />
+                    <label>
+                        Number of travelers (max 8):
+                            <input type="number" className="login-signup" placeholder="people" name="party" value={this.state.travelers} min="1" max="8" onChange={this.handleChangeTravelers}/>
                     </label>
                     <br />
                         <input type="submit" value="Submit"/>
                 </form>
             </div>
-                <Link to='/signup'>Create Account</Link>
+                <Link className="link" to='/signup'>
+                    Create Account
+                </Link>
             </div>
-            </body>
+            </div>
         )
     }
 }

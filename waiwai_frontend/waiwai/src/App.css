@@ -1,3 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Oleo+Script|Roboto&display=swap');
+
+.link {
+  color: white
+}
+
+.hotel_image {
+  height: 275px;
+  width: 400px
+}
+
+form {
+  color: white;
+  font-family:'Oleo Script', cursive;
+}
+
+#create {
+  color: white;
+  font-family:'Oleo Script', cursive;
+}
+
+.login-signup {
+  font-family:'Roboto'
+}
+
 .App {
   text-align: center;
 }
@@ -23,8 +48,15 @@
   color: #61dafb;
 }
 
+.app_name {
+  font-family: 'Oleo Script', cursive;
+  font-size: 500%;
+  color: white
+
+}
+
 .title {
-  background-image: url("https://www.fourseasons.com/content/dam/fourseasons/images/web/MAU/MAU_662_aspect16x9.jpg/jcr:content/renditions/cq5dam.web.1280.720.jpeg")
+  background-image: url('https://i.pinimg.com/originals/b4/51/70/b451702eef24e2c33a90ebcf7c7e9eb8.jpg')
 }
 
 @keyframes App-logo-spin {

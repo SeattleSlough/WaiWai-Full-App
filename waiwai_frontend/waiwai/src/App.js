@@ -6,63 +6,53 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './component/Login'
 import Signup from './component/Signup'
 import Portfolio from './container/Portfolio'
-import CarsContainer from './container/CarsContainer'
 import HotelsContainer from './container/HotelsContainer'
 import RestaurantsContainer from './container/RestaurantsContainer'
-import ActivitiesContainer from './container/ActivitiesContainer'
+import ExitContainer from './container/ExitContainer'
 
-const hotelApi = 'http://localhost:3000/hotels/filter'
-// const carApi = 'http://localhost:3000/cars/filter'
-// const restaurantApi = 'http://localhost:3000/restaurants/filter'
-// const activityApi = 'http://localhost:3000/activities/filter'
-// const carKeys = 'http://localhost:3000/carkeys'
-// const hotelKeys = 'http://localhost:3000/hotelkeys'
-// const restaurantKeys = 'http://localhost:3000/restaurantkeys'
-// const activityKeys = 'http://localhost:3000/activitykeys'
+const hotelApi ='http://localhost:3000/hotels'
+const restaurantsApi = 'http://localhost:3000/restaurants'
+const makeHotelReservationApi = 'http://localhost:3000/hotels/reservation'
+const getHotelReservationsApi = 'http://localhost:3000/hotels/reservations'
+const deleteHotelReservationsApi = 'http://localhost:3000/hotels/delete'
+const hotelFilterApi = 'http://localhost:3000/hotels/filter'
+const restaurantFilterApi = 'http://localhost:3000/restaurants/filter'
+const makeRestaurantReservationApi = 'http://localhost:3000/restaurants/reservation'
+const getRestaurantReservationsApi = 'http://localhost:3000/restaurants/reservations'
+const deleteRestaurantReservationsApi = 'http://localhost:3000/restaurants/delete'
 
 class App extends React.Component {
 constructor() {
   super()
   this.state = {
+    travelers: 1,
     hotelIndex: 0,
-    carIndex: 0,
+    hotelsLength:0,
     restaurantIndex: 0,
-    activityIndex: 0,
+    restaurantsLength: 0,
     hotels: [],
     restaurants: [],
-    activites: [],
-    cars: [],
-    allCarKeys: [],
-    allHotelKeys: [],
-    allRestaurantKeys: [],
-    allActivityKeys: [],
-    userHotel: {},
-    userCar: {},
-    userRestaurants: [],
-    userActivities: []
+    userHotel: [],
+    userRestaurants: []
   }
 }
 
 componentDidMount() {
   this.fetchHotels()
-  // this.fetchRestaurants()
-  this.fetchHotelKeys()
-  // this.fetchRestaurantKeys()
+  this.fetchHotelReservations()
+  this.fetchHotelsLength()
+  this.fetchRestaurants()
+  this.fetchRestaurantsLength()
+  this.fetchRestaurantReservations()
 }
 
 handleIncrement = (category) => {
   switch (category) {
     case "hotel":
-      this.setState({ hotelIndex : this.state.hotelIndex + 5}, this.refetch());
+      this.setState({ hotelIndex : this.state.hotelIndex + 3}, this.fetchHotels);
       break;
     case "restaurant":
-      this.setState({ restaurantIndex : this.state.restaurantIndex + 5}, this.refetch());
-      break;
-    case "activity":
-      this.setState({ activityIndex : this.state.activityIndex + 5}, this.refetch());
-      break;
-    case "car":
-      this.setState({ carIndex : this.state.carIndex + 5}, this.refetch())
+      this.setState({ restaurantIndex : this.state.restaurantIndex + 3}, this.fetchRestaurants);
   }
 }
 
@@ -70,43 +60,23 @@ handleIncrement = (category) => {
 handleDecrement = (category) => {
   switch (category) {
     case "hotel":
-      if((this.state.hotelIndex - 5) > 0) {
-        this.setState({ hotelIndex : this.state.hotelIndex - 5}, this.refetch())
+      if((this.state.hotelIndex - 3) >= 0) {
+        this.setState({ hotelIndex : this.state.hotelIndex - 3}, this.fetchHotels)
       } else {
         this.setState({ hotelIndex : 0})
       }
       break;
       case "restaurant":
-        if((this.state.restaurantIndex - 5) > 0) {
-          this.setState({ restaurantIndex : this.state.restaurantIndex + 5}, this.refetch())
+        if((this.state.restaurantIndex - 3) >= 0) {
+          this.setState({ restaurantIndex : this.state.restaurantIndex - 3}, this.fetchRestaurants)
         } else {
           this.setState({ restaurantIndex : 0})
         }
-        break;
-        case "activity":
-          if((this.state.activityIndex - 5) > 0) {
-            this.setState({ activityIndex : this.state.activityIndex + 5}, this.refetch())
-          } else {
-            this.setState({ activityIndex : 0})
-          }
-          break;
-          case "car":
-            if((this.state.carIndex - 5) > 0) {
-              this.setState({ carIndex : this.state.carIndex + 5}, this.refetch())
-            } else {
-              this.setState({ carIndex : 0})
-            }
           }
         }
-        
-refetch = () => {
-    this.fetchHotels()
-    this.fetchRestaurants()
-}
-
 
 fetchHotels = () => {
-  return fetch(hotelApi, {
+  return fetch(hotelFilterApi, {
     method: 'GET',
     headers: {
       'Content-Type' : 'application/json',
@@ -117,71 +87,171 @@ fetchHotels = () => {
   .then(data => this.setState({ hotels : data}))
 }
 
-fetchHotelKeys = () => {
-  
+fetchHotelsLength = () => {
+   return fetch(hotelApi)
+   .then(res => res.json())
+   .then(data => this.setState({hotelsLength : data.length}))
 }
 
-// fetchRestaurants = () => {
-  //   return fetch(restaurantApi)
-  //   .then(res => res.json())
-  //   .then(data => this.setState({ restaurants : data}))
-  // }
-  // 
-  // fetchRestaurantKeys = () => {
-    
-    // }
-    
-    // fetchActivities = () => {
-      //   return fetch(activityApi)
-      //   .then(res => res.json())
-      //   .then(data => this.setState({ activities : data }))
-      // }
-      
-      // fetchActivitiyKeys = () => {
-        
-        // }
-        
-  // fetchCars = () => {
- //   return fetch(carApi)
-//   .then(res => res.json())
-//   .then(data => this.setState({ cars : data}))
-// }
+reserveHotel = (hotelId) => {
+  fetch(makeHotelReservationApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'hotel' : hotelId,
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => this.fetchHotelReservations())
+}
 
-// fetchCarKeys = () => {
+fetchHotelReservations = () => {
+  fetch(getHotelReservationsApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => this.setState({userHotel : data}))
+}
 
-// }
+deleteHotelReservations = (hotelId) => {
+  fetch(deleteHotelReservationsApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'hotel' : hotelId,
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
+  .then(this.setState({ userHotel : []}))
+  // .then(data => this.setState({ userRestaurants : this.prevState.userRestaurants})))
+}
+
+previousHotels = () => {
+  if(this.state.hotelIndex >= 3) {
+    return true
+  }
+}
+
+nextHotels = () => {
+  if(this.state.hotelIndex < this.state.hotelsLength - 3) {
+    return true
+  }
+}
+
+fetchRestaurants = () => {
+    return fetch(restaurantFilterApi, {
+      method: 'GET',
+      headers: {
+        'Content-Type' : 'application/json',
+        'index' : this.state.restaurantIndex
+      }
+    })
+    .then(res => res.json())
+    .then(data => this.setState({ restaurants : data }))
+  }
+
+fetchRestaurantsLength = () => {
+  return fetch(restaurantsApi)
+  .then(res => res.json())
+  .then(data => this.setState({restaurantsLength : data.length}))
+}
+
+reserveRestaurant = (restaurantId) => {
+  fetch(makeRestaurantReservationApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'hotel' : restaurantId,
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => this.fetchRestaurantReservations())
+}
+
+fetchRestaurantReservations = () => {
+  fetch(getRestaurantReservationsApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => this.setState({userRestaurants : data}))
+}
+
+deleteRestaurantReservations = (restaurantId) => {
+  fetch(deleteRestaurantReservationsApi, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json',
+      'hotel' : restaurantId,
+      'user' : `${localStorage.getItem("user_id")}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => this.setState({ userRestaurants : data}))
+}
+
+previousRestaurants = () => {
+  if(this.state.restaurantIndex >= 3) {
+    return true
+  }
+}
+  
+nextRestaurants = () => {
+  if(this.state.restaurantIndex < this.state.restaurantsLength - 3) {
+    return true
+  }
+}
+    
+setTravelerState = (value) => {
+  this.setState({travelers : value })
+}
 
   render() {
     return (
    <>
    <Router>
-     <Route exact path='/' render={(props) => <Login {...props}/>}/>
-     <Route path='/signup' render={(props) => <Signup {...props}/>}/>
+     <Route exact path='/' render={(props) => <Login {...props} setState={this.setTravelerState}/>}/>
+     <Route path='/signup' render={(props) => <Signup {...props} setState={this.setTravelerState}/>}/>
+     <Route path='/exit' render={() => <ExitContainer 
+          hotel={this.state.userHotel} 
+          restaurants={this.state.userRestaurants} 
+          travelers={this.state.travelers}/>}
+        />
      <Route path='/portfolio' render={() => <Portfolio 
           hotel={this.state.userHotel}
-          car={this.state.userCar}
+          travelers={this.state.travelers}
           restaurants={this.state.userRestaurants}
-          activities={this.state.userActivities}
-          increment={this.state.handleIncrement} 
-          decrement={this.state.handleDecrement}
-        />}/>
-     <Route path='/cars' render={() => <CarsContainer 
-          increment={this.state.handleIncrement} 
-          decrement={this.state.handleDecrement}
+          deleteHotel={this.deleteHotelReservations}
+          deleteRestaurant={this.deleteRestaurantReservations}
+          fetchHotel={this.fetchHotelReservations}
+          fetchRestaurant={this.fetchRestaurantReservations}
         />}/>
      <Route path='/hotels' render={() => <HotelsContainer 
-          increment={this.state.handleIncrement} 
-          decrement={this.state.handleDecrement}
+          index={this.state.hotelIndex}
+          increment={this.handleIncrement} 
+          decrement={this.handleDecrement}
           hotels={this.state.hotels}
+          reserve={this.reserveHotel}
+          previous={this.previousHotels}
+          next={this.nextHotels}
+          refetch={this.refetchHotels}
         />}/>
      <Route path='/restaurants' render={() => <RestaurantsContainer 
-          increment={this.state.handleIncrement} 
-          decrement={this.state.handleDecrement}
+          increment={this.handleIncrement} 
+          decrement={this.handleDecrement}
           restaurants={this.state.restaurants}
-        />}/>
-     <Route path='/activities' render={() => <ActivitiesContainer 
-          increment={this.state.handleIncrement} 
-          decrement={this.state.handleDecrement}
+          reserve={this.reserveRestaurant}
+          previous={this.previousRestaurants}
+          next={this.nextRestaurants}
         />}/>
    </Router>
 
