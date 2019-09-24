@@ -7,7 +7,6 @@ import LoaderHOC from '../HOC/LoaderHOC'
 class HotelsContainer extends React.Component {  
 
     render() {
-        {console.log(this.props.index)}
         let prevButton;
         let nextButton;
         if(this.props.previous()) {

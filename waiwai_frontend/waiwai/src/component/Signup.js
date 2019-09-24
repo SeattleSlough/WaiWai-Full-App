@@ -53,9 +53,73 @@ handleChangeTravelers = (ev) => {
 
 render() {
     return (
-        <div className="title">
-            <h1 className="app_name"> Maui Waiai</h1>
-            <h3 id="create">Create Your Waiwai Account</h3>
+        // <div className="title">
+           
+
+            <CssBaseline />
+                <Container fixed style={styles.paperContainer}>
+                <ButtonAppBar></ButtonAppBar>
+                <h1 className="app_name"> Maui Waiai</h1>
+                <h3 id="create">Create Your Waiwai Account</h3>
+                <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                >
+                <Paper square={false} elevation={1}>
+            <form onSubmit={(ev) => props.submit(ev)}>
+                    <FormControl variant="outlined" required={true} fullWidth={true}>
+                        <InputLabel htmlFor="my-input" > Username</InputLabel>
+                        <Input value={this.state.username} id="my-input" aria-describedby="my-helper-text" onChange={this.handleChangeUsername} />
+                        <FormHelperText id="my-helper-text">Input your username</FormHelperText>
+                    </FormControl>
+                    <br />
+                    <br />
+                    <FormControl variant="outlined" required={true} fullWidth={true}>
+                        <InputLabel htmlFor="my-input">Password</InputLabel>
+                        <Input value={this.state.password} id="my-input" aria-describedby="my-helper-text" onChange={this.handleChangePassword}/>
+                        <FormHelperText id="my-helper-text">Input your password</FormHelperText>
+                    </FormControl>
+                    <br />
+                    <br />
+                    <FormControl variant="outlined" required={true} fullWidth={true}>
+                        <InputLabel htmlFor="my-input">Number of travelers</InputLabel>
+                        <Input value={this.state.travelers} id="my-input" aria-describedby="my-helper-text" inputProps={{min: "1", max: "8"}} onChange={this.handleChangeTravelers}/>
+                        <FormHelperText id="my-helper-text">max: 8</FormHelperText>
+                    </FormControl>
+                    <br />
+                    <br />
+                    {actions}
+            </form>
+        </Paper>
+    
+        </Grid>
+           
+        </Container>
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* 
+
             <div>
                 <form onSubmit={(ev) => this.handleSubmit(ev)}>
                     <label>
@@ -78,7 +142,7 @@ render() {
                 </form>
             </div>
         </div>
-    )
+    ) */}
 }
 }
 

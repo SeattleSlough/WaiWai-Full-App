@@ -1,12 +1,26 @@
-@import url('https://fonts.googleapis.com/css?family=Oleo+Script|Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oleo+Script&display=swap');
+
+.MuiPaper-rounded {
+ padding: 20px;
+ opacity: 0.5;
+ width: 450px;
+}
+
+.paperDiv {
+  text-align: center;
+}
+
+.MuiFormControl {
+  padding: 20px
+}
 
 .link {
-  color: white
+  color: white;
 }
 
 .hotel_image {
   height: 275px;
-  width: 400px
+  width: 400px;
 }
 
 form {
@@ -19,13 +33,16 @@ form.bill {
   font-family:'Oleo Script', cursive;
   }
 
-#create {
-  color: white;
+div.create {
+  color: black;
   font-family:'Oleo Script', cursive;
+  font-size: 50px;
+  text-align: center;
+  padding: 20px;
 }
 
 .login-signup {
-  font-family:'Roboto'
+  font-family:'Roboto';
 }
 
 .App {
@@ -53,15 +70,16 @@ form.bill {
   color: #61dafb;
 }
 
-.app_name {
+div.app_name {
+  padding: 35px;
+  text-align: center; 
   font-family: 'Oleo Script', cursive;
-  font-size: 500%;
-  color: white
-
+  font-size: 200px;
+  color: black;
 }
 
 .title {
-  background-image: url('https://i.pinimg.com/originals/b4/51/70/b451702eef24e2c33a90ebcf7c7e9eb8.jpg')
+  background-image: url('https://i.pinimg.com/originals/b4/51/70/b451702eef24e2c33a90ebcf7c7e9eb8.jpg');
 }
 
 @keyframes App-logo-spin {

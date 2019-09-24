@@ -3,8 +3,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './component/Login'
-import Signup from './component/Signup'
+import LoginContainer from './container/LoginContainer'
+import SignupContainer from './container/SignupContainer'
 import Portfolio from './container/Portfolio'
 import HotelsContainer from './container/HotelsContainer'
 import RestaurantsContainer from './container/RestaurantsContainer'
@@ -218,8 +218,8 @@ setTravelerState = (value) => {
     return (
    <>
    <Router>
-     <Route exact path='/' render={(props) => <Login {...props} setState={this.setTravelerState}/>}/>
-     <Route path='/signup' render={(props) => <Signup {...props} setState={this.setTravelerState}/>}/>
+     <Route exact path='/' render={(props) => <LoginContainer {...props} setState={this.setTravelerState}/>}/>
+     <Route path='/signup' render={(props) => <SignupContainer {...props} setState={this.setTravelerState}/>}/>
      <Route path='/exit' render={() => <ExitContainer 
           hotel={this.state.userHotel} 
           restaurants={this.state.userRestaurants} 
