@@ -1,13 +1,30 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import {Link as RouterLink} from 'react-router-dom'
+
+const Hotel =  React.forwardRef((props, ref) => (
+    <RouterLink innerRef={ref} to="/hotels" {...props}/>))
 
 function EmptyRestaurant(props) {
+
+    const actions = <Button
+    variant="contained"
+    type="submit"
+    label="Submit"
+    color="default"
+    value="Submit"
+    component={Hotel}>
+        Book a table
+    </Button>
+
+
     return (
-        <div>
-            <h2>Your Restaurants</h2>
-            <p>You don't have any tables booked.  Let's fix that.</p>
-            <button type="button"><Link to='/restaurants'>Book a table</Link></button>
-        </div>
+    <div>
+        <p className="regularText">You have no tables booked.  Let's fix that!</p>
+        {actions}
+        {/* <button type="button"><Link to='/hotels'>Make a Hotel Reservation</Link></button> */}
+    </div>
     )
 }
 
