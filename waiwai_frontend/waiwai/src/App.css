@@ -6,6 +6,18 @@
  width: 450px;
 }
 
+div.prevButton {
+  position: relative;
+  top: 650px;
+  right: 900px
+}
+
+div.nextButton {
+  position: relative;
+  top: 650px;
+  right: 350px
+}
+
 .MuiCard-root {
   opacity: .8;
 }
