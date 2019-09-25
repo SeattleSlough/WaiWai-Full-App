@@ -1,15 +1,23 @@
 import React from 'react'
+import {Grid} from '@material-ui/core'
 
 import LoaderHOC from '../HOC/LoaderHOC'
 import RestaurantReservations from './RestaurantReservations'
+import RestaurantItineraryCard from './RestaurantItineraryCard'
 
 class InterimRestaurant extends React.Component {
     render() {
         return (
             <div>
+                <Grid
+                            container
+                            direction="row"
+                            justify="space-between"
+                            alignItems="flex-start"
+                        >
               
             {this.props.restaurants.map((obj, index) => (
-                     <RestaurantReservations 
+                     <RestaurantItineraryCard 
                         key={index}
                         name={obj.name}
                         image={obj.image}
@@ -17,6 +25,7 @@ class InterimRestaurant extends React.Component {
                         delete={this.props.delete}
                     />
                 ))}
+                </Grid>
             </div>
         )
     }

@@ -23,12 +23,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Login = React.forwardRef((props, ref) => (
-    <RouterLink innerRef={ref} to="/" {...props}/>))
+const Hotels = React.forwardRef((props, ref) => (
+    <RouterLink innerRef={ref} to="/hotels" {...props}/>))
 const Itinerary =  React.forwardRef((props, ref) => (
     <RouterLink innerRef={ref} to="/portfolio" {...props}/>))
+const Restaurants =  React.forwardRef((props, ref) => (
+    <RouterLink innerRef={ref} to="/restaurants" {...props}/>))
+const Exit =  React.forwardRef((props, ref) => (
+        <RouterLink innerRef={ref} to="/exit" {...props}/>)) 
 
-export default function MainAppBar() {
+export default function MainAppBar(props) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -56,14 +60,16 @@ export default function MainAppBar() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Itinerary</MenuItem>
-        <MenuItem onClick={handleClose}>Hotels</MenuItem>
-        <MenuItem onClick={handleClose}>Restaurants</MenuItem>
+        <MenuItem onClick={handleClose} component={Itinerary}>Itinerary</MenuItem>
+        <MenuItem onClick={handleClose} component={Hotels}> Hotels</MenuItem>
+        <MenuItem onClick={handleClose} component={Restaurants}>Restaurants</MenuItem>
       </Menu>
     </div>
           <Typography variant="h6" className={classes.title}>
             Maui Waiwai
           </Typography>
+          <Button color="inherit">Total Travelers: {props.travelers}</Button>
+          <Button color="inherit" component={Exit}>Pay For Boondoggle</Button>
           <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>

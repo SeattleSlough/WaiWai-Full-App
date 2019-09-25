@@ -45,7 +45,7 @@ class HotelsContainer extends React.Component {
                             label="Submit"
                             color="default"
                             value="hotel"
-                            onClick={(ev) => this.props.decrement(ev.currentTarget.value)}>Previous 3
+                            onClick={(ev) => this.props.decrement(ev.currentTarget.value)}>Previous
              </Button>
             //  <button type="button" className="increment_button" value="hotel" onClick={(ev) => this.props.decrement(ev.target.value)}>Previous 3</button>
         } else {
@@ -54,7 +54,7 @@ class HotelsContainer extends React.Component {
                             type="submit"
                             label="Submit"
                             color="default"
-                        >Previous 3
+                        >Previous
                     </Button>
         }
 
@@ -66,7 +66,7 @@ class HotelsContainer extends React.Component {
                             label="Submit"
                             color="default"
                             value="hotel"
-                            onClick={(ev) => this.props.increment(ev.currentTarget.value)}>Next 3
+                            onClick={(ev) => this.props.increment(ev.currentTarget.value)}>Next
             </Button>
             // <button type="button" className="increment_button" value="hotel" onClick={(ev) => this.props.increment(ev.target.value)}>Next 3</button>
         } else {
@@ -75,7 +75,7 @@ class HotelsContainer extends React.Component {
                             type="submit"
                             label="Submit"
                             color="default"
-                        >Next 3
+                        >Next
                     </Button>
         }
 
@@ -84,22 +84,20 @@ class HotelsContainer extends React.Component {
                 height: 4000,
                 backgroundImage: `url(${Image})`
             },
-            paper: {}
         }
         
         return(
-                <Container fixed style={styles.container}>
+            <>
                     <MainAppBar></MainAppBar>
+                <Container fixed style={styles.container}>
+                    <div className="hotels">Hotels</div>
                     <Grid
                     container
                     direction="row"
                     justify="space-between"
                     alignItems="flex-start"
                     >
-                    
-                <br />
-                <br />
-                <br />
+
                {this.props.hotels.map((obj, index) => (
                     <HotelCard 
                         key={index} 
@@ -124,6 +122,7 @@ class HotelsContainer extends React.Component {
             </div>
             </Grid>
             </Container>
+            </>
         )
     }
 }

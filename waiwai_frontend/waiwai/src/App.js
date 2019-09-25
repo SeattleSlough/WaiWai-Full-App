@@ -49,10 +49,10 @@ componentDidMount() {
 handleIncrement = (category) => {
   switch (category) {
     case "hotel":
-      this.setState({ hotelIndex : this.state.hotelIndex + 3}, this.fetchHotels);
+      this.setState({ hotelIndex : this.state.hotelIndex + 4}, this.fetchHotels);
       break;
     case "restaurant":
-      this.setState({ restaurantIndex : this.state.restaurantIndex + 3}, this.fetchRestaurants);
+      this.setState({ restaurantIndex : this.state.restaurantIndex + 4}, this.fetchRestaurants);
   }
 }
 
@@ -60,15 +60,15 @@ handleIncrement = (category) => {
 handleDecrement = (category) => {
   switch (category) {
     case "hotel":
-      if((this.state.hotelIndex - 3) >= 0) {
-        this.setState({ hotelIndex : this.state.hotelIndex - 3}, this.fetchHotels)
+      if((this.state.hotelIndex - 4) >= 0) {
+        this.setState({ hotelIndex : this.state.hotelIndex - 4}, this.fetchHotels)
       } else {
         this.setState({ hotelIndex : 0})
       }
       break;
       case "restaurant":
-        if((this.state.restaurantIndex - 3) >= 0) {
-          this.setState({ restaurantIndex : this.state.restaurantIndex - 3}, this.fetchRestaurants)
+        if((this.state.restaurantIndex - 4) >= 0) {
+          this.setState({ restaurantIndex : this.state.restaurantIndex - 4}, this.fetchRestaurants)
         } else {
           this.setState({ restaurantIndex : 0})
         }

@@ -11,7 +11,7 @@ class RestaurantsController < ActionController::API
 
     def filter
         @restaurants = Restaurant.all 
-        @filter = @restaurants.slice(request.headers['HTTP_INDEX'].to_i,3)
+        @filter = @restaurants.slice(request.headers['HTTP_INDEX'].to_i,4)
         render json: @filter
     end
 
