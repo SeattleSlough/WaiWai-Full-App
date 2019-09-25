@@ -6,6 +6,10 @@
  width: 450px;
 }
 
+.MuiCard-root {
+  opacity: .8;
+}
+
 .paperDiv {
   text-align: center;
 }
