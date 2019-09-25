@@ -25,10 +25,24 @@ p.regularText {
   padding: 20px;
 }
 
+p.finalText {
+  color: black;
+  font-family:'Oleo Script', cursive;
+  font-size: 35px;
+  padding: 20px;
+}
+
 div.hotels {
   color: black;
   font-family:'Oleo Script', cursive;
   font-size: 50px;
+  padding: 20px;
+}
+
+div.billHeader {
+  color: black;
+  font-family:'Oleo Script', cursive;
+  font-size: 60px;
   padding: 20px;
 }
 

@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import {Link as RouterLink} from 'react-router-dom'
 
-const Hotel =  React.forwardRef((props, ref) => (
-    <RouterLink innerRef={ref} to="/hotels" {...props}/>))
+const Restaurants =  React.forwardRef((props, ref) => (
+    <RouterLink innerRef={ref} to="/restaurants" {...props}/>))
 
 function EmptyRestaurant(props) {
 
@@ -14,7 +14,7 @@ function EmptyRestaurant(props) {
     label="Submit"
     color="default"
     value="Submit"
-    component={Hotel}>
+    component={Restaurants}>
         Book a table
     </Button>
 

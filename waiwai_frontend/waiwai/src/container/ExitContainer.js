@@ -1,8 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { Container } from '@material-ui/core';
 
 import HotelBill from '../component/HotelBill'
 import RestaurantBill from '../component/RestaurantBill'
+import Image from '../images/kisspng-hawaii-oahu-maui-map-island-hawaii-island-5ae1a9a6c2b2d3.3751889015247384707975.png'
+import MainAppBar from '../component/MainAppBar'
 
 const getHotelReservationsApi = 'http://localhost:3000/hotels/reservations'
 const getRestaurantReservationsApi = 'http://localhost:3000/restaurants/reservations'
@@ -73,60 +76,68 @@ tco = () => {
 }
 
     render() {
+        const styles = {
+            container : {
+                height: 4000,
+                backgroundImage: `url(${Image})`
+            },
+        }
 
         let tcoTile;
         if(this.tco()) {
-            tcoTile = <h4>Based on your income of ${this.state.income} and savings rate of {this.state.savings}%, it would take you {((this.state.hotelTotal + this.state.restaurantTotal)/(this.state.income * (this.state.savings/100))).toFixed(2)} years to pay for this trip.</h4>    
+            tcoTile = <p className="finalText">Based on your income of ${this.state.income} and savings rate of {this.state.savings}%, it would take you {((this.state.hotelTotal + this.state.restaurantTotal)/(this.state.income * (this.state.savings/100))).toFixed(2)} years to pay for this trip.</p>    
         } else {
-            tcoTile = <h4>Please enter your annual income and projected savings rate to see how Waiwai you are.</h4>
+            tcoTile = <p className="finalText">Please enter your annual income and projected savings rate to see how Waiwai you are.</p>
         }
 
         return(
             <div>
-                <h2><Link to='/portfolio'>Go To Your Itinerary</Link></h2>
-                <div>
-                    <div>
-                        <div>
-                            <h2> Hotel Bill</h2>
-                            {this.props.hotel.map((obj,index) => (
-                                <HotelBill 
-                                    key={index} 
-                                    cost={obj.rate} 
-                                    travelers={this.props.travelers}
-                                />
-                            ))}
+            <MainAppBar></MainAppBar>
+                    <Container style={styles.container}>
                             <div>
-                                <h2> Food Bill</h2>
-                                    {this.props.restaurants.map((obj,index) => (
-                                        <RestaurantBill 
-                                            key={index} 
-                                            name={obj.name} 
-                                            cpp={obj.cost_per_person} 
-                                            travelers={this.props.travelers}
-                                            total={this.props.setFoodTotal}
-                                        />
-                                    ))}
-                            
+                                <div>
+                                    <div>
+                                        <div className="billHeader"> Hotel Bill</div>
+                                        {this.props.hotel.map((obj,index) => (
+                                            <HotelBill 
+                                                key={index} 
+                                                cost={obj.rate} 
+                                                travelers={this.props.travelers}
+                                            />
+                                        ))}
+                                        <div>
+                                            <div className="billHeader"> Food Bill</div>
+                                                {this.props.restaurants.map((obj,index) => (
+                                                    <RestaurantBill 
+                                                        key={index} 
+                                                        name={obj.name} 
+                                                        cpp={obj.cost_per_person} 
+                                                        travelers={this.props.travelers}
+                                                        total={this.props.setFoodTotal}
+                                                    />
+                                                ))}
+                                        
+                                        </div>
+                                        <br />
+                                    </div>
+                                    <br />
+                                    <div className="billHeader"> TOTAL COST: ${(this.state.hotelTotal + this.state.restaurantTotal)} </div>
+                                </div>
+                                <form className="bill">
+                                    <label >
+                                        Annual Income:
+                                            <input type="number" className="income" placeholder="income" name="income" value={this.state.income} min="1" max="8" onChange={this.handleChangeIncome}/>
+                                    </label>
+                                    <br />
+                                    <label> 
+                                        Annual Savings Rate (%):
+                                            <input type="number" className="savings" placeholder="savings" name="savings" value={this.state.savings} min="1" max="8" onChange={this.handleChangeSavings}/>
+                                    </label>
+                                </form>
                             </div>
-                            <br />
+                                {tcoTile}
+                        </Container>
                         </div>
-                        <br />
-                        <h2> TOTAL COST: ${(this.state.hotelTotal + this.state.restaurantTotal)} </h2>
-                    </div>
-                      <form className="bill">
-                          <label >
-                              Annual Income:
-                                <input type="number" className="income" placeholder="income" name="income" value={this.state.income} min="1" max="8" onChange={this.handleChangeIncome}/>
-                          </label>
-                          <br />
-                          <label> 
-                              Annual Savings Rate (%):
-                                <input type="number" className="savings" placeholder="savings" name="savings" value={this.state.savings} min="1" max="8" onChange={this.handleChangeSavings}/>
-                          </label>
-                      </form>
-                </div>
-                    {tcoTile}
-            </div>
           
         )
     }
