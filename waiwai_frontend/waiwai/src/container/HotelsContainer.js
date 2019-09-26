@@ -1,6 +1,6 @@
 import React from 'react'
 import HotelCard from '../component/HotelCard'
-import {Link} from 'react-router-dom'
+import {Link as RouterLink} from 'react-router-dom'
 import { Container } from '@material-ui/core';
 import {Grid} from '@material-ui/core'
 import Button from '@material-ui/core/Button'
@@ -27,9 +27,22 @@ const styles = theme => ({
     }
   });
 
+  const Itinerary =  React.forwardRef((props, ref) => (
+    <RouterLink innerRef={ref} to="/portfolio" {...props}/>))
+
 class HotelsContainer extends React.Component {  
     
     render() {
+
+        let itineraryButton = <Button
+                            variant="contained"
+                            type="submit"
+                            label="Submit"
+                            color="default"
+                            value="Submit"
+                            component={Itinerary}>
+                                Go To Itinerary
+                        </Button>
         
         const {classes} = this.props;
 
@@ -121,6 +134,9 @@ class HotelsContainer extends React.Component {
             {nextButton }
             </div>
             </Grid>
+            <div className="itineraryButton"> 
+            {itineraryButton}
+            </div>
             </Container>
             </>
         )

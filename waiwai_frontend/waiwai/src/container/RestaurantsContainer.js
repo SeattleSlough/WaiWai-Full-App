@@ -1,8 +1,7 @@
 import React from 'react'
 
 import LoaderHOC from '../HOC/LoaderHOC'
-import Restaurant from '../component/Restaurant'
-import {Link} from 'react-router-dom'
+import {Link as RouterLink} from 'react-router-dom'
 import { Container } from '@material-ui/core';
 import {Grid} from '@material-ui/core'
 import {Button} from '@material-ui/core'
@@ -10,6 +9,9 @@ import {Button} from '@material-ui/core'
 import Image from '../images/kisspng-hawaii-oahu-maui-map-island-hawaii-island-5ae1a9a6c2b2d3.3751889015247384707975.png'
 import MainAppBar from '../component/MainAppBar'
 import RestaurantCard from '../component/RestaurantCard'
+
+const Itinerary =  React.forwardRef((props, ref) => (
+    <RouterLink innerRef={ref} to="/portfolio" {...props}/>))
 
 
 class RestaurantsContainer extends React.Component {
@@ -66,6 +68,16 @@ class RestaurantsContainer extends React.Component {
             },
         }
 
+        let itineraryButton = <Button
+                            variant="contained"
+                            type="submit"
+                            label="Submit"
+                            color="default"
+                            value="Submit"
+                            component={Itinerary}>
+                                Go To Itinerary
+                        </Button>
+
         return (
             <div>
                 <div>
@@ -92,9 +104,10 @@ class RestaurantsContainer extends React.Component {
                         />
                 ))}
                 <br />
-                {prevButton}
-                {nextButton}
+                <div className="prevButton">{prevButton}</div>
+                <div className="nextButton">{nextButton}</div>
             </Grid>
+                <div className="itineraryButton">{itineraryButton}</div>
             </Container>
                 </div>
             </div>

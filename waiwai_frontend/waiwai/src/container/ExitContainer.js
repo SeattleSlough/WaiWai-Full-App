@@ -52,10 +52,10 @@ class ExitContainer extends React.Component {
             }
         })
         .then(res => res.json())
-        .then(data => {
-            for(let i = 0; i < data.length; i++) {
-                total += data[i].cost_per_person
+        .then(data => {for(let i = 0; i < data.length; i++) {
+                total += (data[i].cost_per_person * this.props.travelers)
             }
+            console.log(total)
             return total
         })
         .then(total => this.setState({ restaurantTotal : total }))

@@ -18,6 +18,12 @@ div.nextButton {
   right: 25px
 }
 
+div.itineraryButton {
+  position: relative;
+  top: 75px;
+  left: 25px
+}
+
 p.regularText {
   color: black;
   font-family:'Oleo Script', cursive;
