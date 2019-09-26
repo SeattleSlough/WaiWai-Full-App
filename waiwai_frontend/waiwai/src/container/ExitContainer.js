@@ -1,6 +1,7 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link as RouterLink} from 'react-router-dom'
 import { Container } from '@material-ui/core';
+import Button from '@material-ui/core/Button'
 
 import HotelBill from '../component/HotelBill'
 import RestaurantBill from '../component/RestaurantBill'
@@ -9,7 +10,11 @@ import MainAppBar from '../component/MainAppBar'
 
 const getHotelReservationsApi = 'http://localhost:3000/hotels/reservations'
 const getRestaurantReservationsApi = 'http://localhost:3000/restaurants/reservations'
+const Itinerary =  React.forwardRef((props, ref) => (
+    <RouterLink innerRef={ref} to="/portfolio" {...props}/>))
 
+const FunFacts =  React.forwardRef((props, ref) => (
+    <RouterLink innerRef={ref} to="/portfolio" {...props}/>))
 
 class ExitContainer extends React.Component {
 
@@ -83,6 +88,16 @@ tco = () => {
             },
         }
 
+        let itineraryButton = <Button
+                                variant="contained"
+                                type="submit"
+                                label="Submit"
+                                color="default"
+                                value="Submit"
+                                component={Itinerary}>
+                                    Go To Itinerary
+                            </Button>
+
         let tcoTile;
         if(this.tco()) {
             tcoTile = <p className="finalText">Based on your income of ${this.state.income} and savings rate of {this.state.savings}%, it would take you {((this.state.hotelTotal + this.state.restaurantTotal)/(this.state.income * (this.state.savings/100))).toFixed(2)} years to pay for this trip.</p>    
@@ -96,17 +111,19 @@ tco = () => {
                     <Container style={styles.container}>
                             <div>
                                 <div>
+                                    <div className="billTitle">Butcher's Bill</div>
                                     <div>
-                                        <div className="billHeader"> Hotel Bill</div>
+                                        <div className="billHeader"> Hotel</div>
                                         {this.props.hotel.map((obj,index) => (
                                             <HotelBill 
                                                 key={index} 
-                                                cost={obj.rate} 
+                                                cost={obj.rate}
+                                                name={obj.name} 
                                                 travelers={this.props.travelers}
                                             />
                                         ))}
                                         <div>
-                                            <div className="billHeader"> Food Bill</div>
+                                            <div className="billHeader"> Food</div>
                                                 {this.props.restaurants.map((obj,index) => (
                                                     <RestaurantBill 
                                                         key={index} 
@@ -118,9 +135,7 @@ tco = () => {
                                                 ))}
                                         
                                         </div>
-                                        <br />
                                     </div>
-                                    <br />
                                     <div className="billHeader"> TOTAL COST: ${(this.state.hotelTotal + this.state.restaurantTotal)} </div>
                                 </div>
                                 <form className="bill">
@@ -136,6 +151,7 @@ tco = () => {
                                 </form>
                             </div>
                                 {tcoTile}
+                                <div className="itineraryButton">{itineraryButton}</div>
                         </Container>
                         </div>
           

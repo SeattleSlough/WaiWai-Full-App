@@ -3,8 +3,8 @@ import React from 'react'
 function RestaurantBill(props) {
     return (
         <div>
-            <h3>{props.name}</h3>
-            <h4>Total Bill ({props.travelers} person(s)): ${(props.cpp)*(props.travelers)}</h4>
+            <div className="lineItemHeader">{props.name}</div>
+            <div className="lineItemSubheader">Total Bill ({props.travelers} person(s)): ${(props.cpp)*(props.travelers)}</div>
         </div>
     )
 }

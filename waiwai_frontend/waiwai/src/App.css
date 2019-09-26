@@ -49,7 +49,7 @@ div.billHeader {
   color: black;
   font-family:'Oleo Script', cursive;
   font-size: 60px;
-  padding: 20px;
+  margin-top: 40px;
 }
 
 .MuiCard-root {
@@ -138,6 +138,28 @@ div.subTitle {
 
 .title {
   background-image: url('https://i.pinimg.com/originals/b4/51/70/b451702eef24e2c33a90ebcf7c7e9eb8.jpg');
+}
+
+div.lineItemHeader {
+  margin-bottom: 0px;
+  font-family: 'Oleo Script', cursive;
+  font-size: 35px;
+  color: black;
+}
+
+div.lineItemSubheader {
+  margin-bottom: 20px;
+  font-family: 'Roboto';
+  font-size: 23px;
+  color: black;
+}
+
+div.billTitle {
+  margin-bottom: 20px;
+  font-family: 'Oleo Script', cursive;
+  font-size: 75px;
+  color: black;
+  text-align: center;
 }
 
 @keyframes App-logo-spin {
