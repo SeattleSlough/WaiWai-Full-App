@@ -93,6 +93,7 @@ render() {
                     alignItems="center"
                     >
                 <div className="app_name">Maui Waiwai</div>
+                <div className="subTitle">10 days of living large in Maui</div>
                 <LoginCreate
                     username={this.handleChangeUsername}
                     password={this.handleChangePassword}

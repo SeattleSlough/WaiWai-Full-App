@@ -121,10 +121,18 @@ div.create {
 }
 
 div.app_name {
-  padding: 35px;
+  padding: 0px;
   text-align: center; 
   font-family: 'Oleo Script', cursive;
   font-size: 200px;
+  color: black;
+}
+
+div.subTitle {
+  margin-bottom: 30px;
+  text-align: center; 
+  font-family: 'Oleo Script', cursive;
+  font-size: 75px;
   color: black;
 }
 
