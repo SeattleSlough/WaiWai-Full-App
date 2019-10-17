@@ -5,7 +5,7 @@ class CreateActivities < ActiveRecord::Migration[5.2]
       t.text :provider
       t.text :description
       t.text :image
-      t.integer :cost
+      t.float :cost
     end
   end
 end

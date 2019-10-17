@@ -14,6 +14,19 @@ def filter
     @filter = @activities.slice(request.headers['HTTP_INDEX'].to_i,5)
     render json: @filter
 end
+
+def reservation
+    @user = User.find(request.headers['HTTP_USER'])
+    if @user.hotels.length === 0
+        @user.activities.push(Activity.find(request.headers['HTTP_ACTIVITY']))
+    end
+    render json: @user.activities
+end
+
+def deleteReservation
+    @user = User.find(request.headers['HTTP_USER'])
+    @user.activities.delete(Activity.find(request.headers['HTTP_ACTIVITY']))
+end
     
     
 

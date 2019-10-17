@@ -1,2 +1,0 @@
-class ActivityKey < ApplicationRecord
-end

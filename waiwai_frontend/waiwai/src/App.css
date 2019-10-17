@@ -1,3 +1,113 @@
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.MuiPaper-rounded {
+  padding: 20px;
+  opacity: 0.5;
+  width: 450px;
+}
+
+div.prevButton {
+  position: relative;
+  top: 25px;
+  left: 25px;
+}
+
+div.nextButton {
+  position: relative;
+  top: 25px;
+  right: 25px;
+}
+
+div.itineraryButton {
+  position: relative;
+  top: 75px;
+  left: 25px;
+}
+
+p.regularText {
+  color: black;
+  font-family: "Oleo Script", cursive;
+  font-size: 25px;
+  padding: 20px;
+}
+
+p.finalText {
+  color: black;
+  font-family: "Oleo Script", cursive;
+  font-size: 35px;
+  padding: 20px;
+}
+
+h3.finalText {
+  color: black;
+  font-family: "Oleo Script", cursive;
+  font-size: 35px;
+  padding: 20px;
+}
+
+div.hotels {
+  color: black;
+  font-family: "Oleo Script", cursive;
+  font-size: 50px;
+  padding: 20px;
+}
+
+div.billHeader {
+  color: black;
+  font-family: "Oleo Script", cursive;
+  font-size: 60px;
+  margin-top: 40px;
+}
+
+.MuiCard-root {
+  opacity: 0.8;
+}
+
+.paperDiv {
+  text-align: center;
+}
+
+.MuiFormControl {
+  padding: 20px;
+}
+
+.link {
+  color: white;
+}
+
+.hotel_image {
+  height: 275px;
+  width: 400px;
+}
+
+form {
+  color: white;
+  font-family: "Oleo Script", cursive;
+}
+
+form.bill {
+  color: black;
+  font-family: "Oleo Script", cursive;
+}
+
+div.create {
+  color: black;
+  font-family: "Oleo Script", cursive;
+  font-size: 50px;
+  text-align: center;
+  padding: 20px;
+}
+
+.login-signup {
+  font-family: "Roboto";
+}
+
 .App {
   text-align: center;
 }
@@ -23,8 +133,46 @@
   color: #61dafb;
 }
 
+div.app_name {
+  padding: 0px;
+  text-align: center;
+  font-family: "Oleo Script", cursive;
+  font-size: 200px;
+  color: black;
+}
+
+div.subTitle {
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: "Oleo Script", cursive;
+  font-size: 75px;
+  color: black;
+}
+
 .title {
-  background-image: url("https://www.fourseasons.com/content/dam/fourseasons/images/web/MAU/MAU_662_aspect16x9.jpg/jcr:content/renditions/cq5dam.web.1280.720.jpeg")
+  background-image: url("https://i.pinimg.com/originals/b4/51/70/b451702eef24e2c33a90ebcf7c7e9eb8.jpg");
+}
+
+div.lineItemHeader {
+  margin-bottom: 0px;
+  font-family: "Oleo Script", cursive;
+  font-size: 35px;
+  color: black;
+}
+
+div.lineItemSubheader {
+  margin-bottom: 20px;
+  font-family: "Roboto";
+  font-size: 23px;
+  color: black;
+}
+
+div.billTitle {
+  margin-bottom: 20px;
+  font-family: "Oleo Script", cursive;
+  font-size: 75px;
+  color: black;
+  text-align: center;
 }
 
 @keyframes App-logo-spin {

@@ -14,4 +14,17 @@ class CarsController < ActionController::API
         @filter = @cars.slice(request.headers['HTTP_INDEX'].to_i,5)
         render json: @filter
     end
+
+    def reservation
+        @user = User.find(request.headers['HTTP_USER'])
+        if @user.hotels.length === 0
+            @user.cars.push(Car.find(request.headers['HTTP_CAR']))
+        end
+        render json: @user.hotels
+    end
+
+    def deleteReservation
+        @user = User.find(request.headers['HTTP_USER'])
+        @user.cars.delete(Car.find(request.headers['HTTP_CAR']))
+    end
 end

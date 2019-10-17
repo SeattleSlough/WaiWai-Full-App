@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_14_041624) do
+ActiveRecord::Schema.define(version: 2019_09_19_193625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,48 +20,32 @@ ActiveRecord::Schema.define(version: 2019_09_14_041624) do
     t.text "provider"
     t.text "description"
     t.text "image"
-    t.integer "cost"
+    t.float "cost"
   end
 
-  create_table "activity_keys", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "activity_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "car_keys", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "car_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "activities_users", id: false, force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "cars", force: :cascade do |t|
     t.string "name"
     t.text "image"
-    t.integer "rate"
-  end
-
-  create_table "hotel_keys", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "hotel_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float "rate"
   end
 
   create_table "hotels", force: :cascade do |t|
     t.text "name"
-    t.integer "rate"
-    t.integer "stars"
+    t.float "rate"
+    t.float "stars"
     t.text "room"
     t.text "description"
     t.text "image"
   end
 
-  create_table "restaurant_keys", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "restaurant_id"
+  create_table "hotels_users", id: false, force: :cascade do |t|
+    t.bigint "hotel_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -69,7 +53,12 @@ ActiveRecord::Schema.define(version: 2019_09_14_041624) do
     t.text "description"
     t.text "image"
     t.integer "cost_per_person"
-    t.integer "stars"
+    t.float "stars"
+  end
+
+  create_table "restaurants_users", id: false, force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
